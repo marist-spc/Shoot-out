@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Shoot Out"
+run/main_scene="uid://72nrd0tku2lj"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -18,6 +19,21 @@ config/icon="res://icon.svg"
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[input]
+
+mouse_click={
+"deadzone": 0.2,
+"events": []
+}
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="World"
+2d_physics/layer_3="Bullets"
+2d_physics/layer_4="Gun"
+2d_physics/layer_5="Items"
 
 [physics]
 
