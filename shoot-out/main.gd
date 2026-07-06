@@ -15,7 +15,6 @@ func initialize():
 			create_input("left",i, KEY_0, Vector2(-1,0))
 			create_input("down",i,KEY_0, Vector2(0,1))
 			create_input("right",i, KEY_0, Vector2(1,0))
-			create_input("shoot",i,KEY_0, Vector2.ZERO, JOY_BUTTON_RIGHT_SHOULDER)
 			create_input("aim_up",i, KEY_0, Vector2(0,-1), JOY_BUTTON_A, true)
 			create_input("aim_left",i, KEY_0, Vector2(-1,0), JOY_BUTTON_A, true)
 			create_input("aim_down",i,KEY_0, Vector2(0,1), JOY_BUTTON_A, true)
@@ -30,7 +29,8 @@ player : int,
 key : Key, 
 joyPadDirection := Vector2.ZERO,
 joy_pad_button := JoyButton.JOY_BUTTON_A,
-isRightAxis := false):
+isRightAxis := false,
+joy_axis := JOY_AXIS_INVALID):
 	var action_name = Inputname + str(player)
 	InputMap.add_action(action_name)
 	if  player == 1 and isPlayer1Keyboard :
@@ -73,6 +73,7 @@ func _ready() -> void:
 		player1IsKeyboard.emit()
 		print("1 CONTROLLER FOUND")
 	else:
+		player1IsKeyboard.emit()
 		print("NO CONTROLLER FOUND")
 	initialize()
 
