@@ -1,8 +1,13 @@
 extends CharacterBody2D
 
-var isPlayerKeyboard := false
+@export var isPlayerKeyboard := false
+@export var player1isKeyboard : = true	
 @export var playerNumber : int
-@export var gun : Node2D
+
+@export var maxCrosshairDistance := 5
+@export var curserSens := 1
+
+@export var health := 2
 
 var Ammo : int
 const SPEED = 100.0
@@ -18,13 +23,39 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED * delta)
 		velocity.y = move_toward(velocity.y, 0, SPEED * delta)
-
+		
 	move_and_slide()
-	aim()
-func aim():
+	aim(delta)
+func aim(delta : int):
+	var shootButton
 	if isPlayerKeyboard:
-		$CrossHair.position = get_viewport().get_mouse_position()
-		$Gun/Tip.look_at($CrossHair)
+		$CrossHair.global_position = get_viewport().get_mouse_position()
+		shootButton = Input.is_action_just_pressed("mouse_click")
+	else:
+		var x = Input.get_axis(concat("aim_left",playerNumber), concat("aim_right",playerNumber))
+		var y = Input.get_axis(concat("aim_up",playerNumber), concat("aim_down",playerNumber))
+		var direction := Vector2(x,y)
+		var device = 1 if player1isKeyboard else 2
+		shootButton = Input.is_action_just_pressed(concat("shoot", device))
+		if direction != Vector2.ZERO:
+			$CrossHair.hide()
+			$CrossHair.global_position = position + direction.normalized() * curserSens	
+	$Gun.look_at($CrossHair.global_position)
+	
+	if shootButton and Ammo != 0:
+		var collision = $"Gun/Bullet Path".get_collider()
+		Ammo -= 1
+		if collision != null:
+			if collision.is_in_group("Players"):
+				collision.health -= 1
+				print("HIT PLAYER")
+		#Stun monster if hits them
+		#Kill dog if hits them
+		#Make sound on wall if hits them
+			
+	
+	
+	
 
 func concat(words : String, number : int):
 	return words + str(number)
@@ -32,7 +63,9 @@ func concat(words : String, number : int):
 
 func _on_main_player_1_is_keyboard():
 	if playerNumber == 1:
-		isPlayerKeyboard = true	
+		isPlayerKeyboard = true
+	else:
+		player1isKeyboard = true
 
 func _on_pick_up_range_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Ammo") and Ammo < 4:
