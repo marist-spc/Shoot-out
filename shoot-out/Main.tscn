@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://72nrd0tku2lj"]
+
+[ext_resource type="PackedScene" uid="uid://r1mf41cdqoof" path="res://player.tscn" id="1_glv2v"]
+[ext_resource type="Script" uid="uid://f8x321yvyejq" path="res://main.gd" id="1_uu6xs"]
+[ext_resource type="PackedScene" uid="uid://bsqooed8k12q0" path="res://Ammo.tscn" id="3_r0du0"]
+
+[node name="Main" type="Node2D" unique_id=1209284694]
+script = ExtResource("1_uu6xs")
+
+[node name="Player1" parent="." unique_id=2010301370 instance=ExtResource("1_glv2v")]
+position = Vector2(372, 334)
+playerNumber = 1
+
+[node name="Player2" parent="." unique_id=1743038392 instance=ExtResource("1_glv2v")]
+position = Vector2(612, 326)
+playerNumber = 2
+
+[node name="Ammo" parent="." unique_id=614470022 instance=ExtResource("3_r0du0")]
+position = Vector2(715, 556)
+
+[node name="Ammo2" parent="." unique_id=186456345 instance=ExtResource("3_r0du0")]
+position = Vector2(473, 519)
+
+[node name="Ammo3" parent="." unique_id=185059094 instance=ExtResource("3_r0du0")]
+position = Vector2(938, 447)
+
+[node name="Ammo4" parent="." unique_id=1572851534 instance=ExtResource("3_r0du0")]
+position = Vector2(549, 594)
+
+[connection signal="player1IsKeyboard" from="." to="Player1" method="_on_main_player_1_is_keyboard"]
