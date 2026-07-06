@@ -23,7 +23,8 @@ func _physics_process(delta: float) -> void:
 	aim()
 func aim():
 	if isPlayerKeyboard:
-		pass
+		$CrossHair.position = get_viewport().get_mouse_position()
+		$Gun/Tip.look_at($CrossHair)
 
 func concat(words : String, number : int):
 	return words + str(number)
@@ -34,7 +35,9 @@ func _on_main_player_1_is_keyboard():
 		isPlayerKeyboard = true	
 
 func _on_pick_up_range_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Ammo"):
+	if area.is_in_group("Ammo") and Ammo < 4:
 		Ammo += 1
 		area.queue_free()
 		print(str(Ammo))
+	else:
+		print("MAX AMMO")

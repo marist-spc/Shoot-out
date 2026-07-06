@@ -3,15 +3,29 @@
 [ext_resource type="Script" uid="uid://bga24m73yf14m" path="res://PlayerScript.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://8i61j41elkl2" path="res://ItemPickUp.gd" id="2_onrkg"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_81axj"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_told4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_told4"]
 radius = 22.022715
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81axj"]
+size = Vector2(39.5, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wvlus"]
+size = Vector2(20, 14)
+
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=656982608]
 collision_mask = 23
 motion_mode = 1
 script = ExtResource("1_4flbx")
+
+[node name="CrossHair" type="Area2D" parent="." unique_id=843312437]
+position = Vector2(45, -21.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CrossHair" unique_id=105302884]
+shape = SubResource("CircleShape2D_81axj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=889090620]
 shape = SubResource("RectangleShape2D_told4")
@@ -22,6 +36,16 @@ script = ExtResource("2_onrkg")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="PickUpRange" unique_id=1388820053]
 shape = SubResource("CircleShape2D_told4")
+
+[node name="Gun" type="Area2D" parent="." unique_id=1722283633]
+
+[node name="Shaft" type="CollisionShape2D" parent="Gun" unique_id=246132496]
+position = Vector2(45, -21.5)
+shape = SubResource("RectangleShape2D_81axj")
+
+[node name="Tip" type="CollisionShape2D" parent="Gun" unique_id=1614727099]
+position = Vector2(71, -22)
+shape = SubResource("RectangleShape2D_wvlus")
 
 [connection signal="area_entered" from="PickUpRange" to="." method="_on_pick_up_range_area_entered"]
 [connection signal="body_entered" from="PickUpRange" to="." method="_on_pick_up_range_body_entered"]
