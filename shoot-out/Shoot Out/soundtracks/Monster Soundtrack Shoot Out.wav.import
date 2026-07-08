@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bcy8pkyyq7wik"
-path="res://.godot/imported/Monster Soundtrack Shoot Out .wav-ad1ac1a7f90017bb36dac86dfbc3b059.sample"
+path="res://.godot/imported/Monster Soundtrack Shoot Out.wav-c0f6ebba63df665c00d31dc44c3590bb.sample"
 
 [deps]
 
-source_file="res://Shoot Out /soundtracks /Monster Soundtrack Shoot Out .wav"
-dest_files=["res://.godot/imported/Monster Soundtrack Shoot Out .wav-ad1ac1a7f90017bb36dac86dfbc3b059.sample"]
+source_file="res://Shoot Out/soundtracks/Monster Soundtrack Shoot Out.wav"
+dest_files=["res://.godot/imported/Monster Soundtrack Shoot Out.wav-c0f6ebba63df665c00d31dc44c3590bb.sample"]
 
 [params]
 

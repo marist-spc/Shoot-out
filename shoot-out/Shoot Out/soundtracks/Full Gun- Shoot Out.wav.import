@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cms0fbbnlugj2"
-path="res://.godot/imported/Full Gun- Shoot Out .wav-a0917ef49de7d9654fb63a6b0d81b5d4.sample"
+path="res://.godot/imported/Full Gun- Shoot Out.wav-3d56081222f96c66e1804d16026f786f.sample"
 
 [deps]
 
-source_file="res://Shoot Out /soundtracks /Full Gun- Shoot Out .wav"
-dest_files=["res://.godot/imported/Full Gun- Shoot Out .wav-a0917ef49de7d9654fb63a6b0d81b5d4.sample"]
+source_file="res://Shoot Out/soundtracks/Full Gun- Shoot Out.wav"
+dest_files=["res://.godot/imported/Full Gun- Shoot Out.wav-3d56081222f96c66e1804d16026f786f.sample"]
 
 [params]
 
