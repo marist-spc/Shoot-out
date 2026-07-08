@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dpdkd7xa7ep5d"]
+
+[ext_resource type="Texture2D" uid="uid://i33ypt86bbbh" path="res://Shoot Out /art /Untitled54_20260706151332.png" id="1_uyr1m"]
+
+[node name="Sprite2D" type="Sprite2D" unique_id=2087699307]
+position = Vector2(1620, 408)
+texture = ExtResource("1_uyr1m")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=301481117]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1737552745]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1855328089]
