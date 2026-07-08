@@ -10,12 +10,12 @@ script = ExtResource("1_uu6xs")
 [node name="Player1" parent="." unique_id=2010301370 instance=ExtResource("1_glv2v")]
 position = Vector2(372, 334)
 playerNumber = 1
-maxCrosshairDistance = 1
+curserSens = 1000
 
 [node name="Player2" parent="." unique_id=1743038392 instance=ExtResource("1_glv2v")]
 position = Vector2(612, 326)
 playerNumber = 2
-maxCrosshairDistance = 1
+curserSens = 1000
 
 [node name="Ammo" parent="." unique_id=614470022 instance=ExtResource("3_r0du0")]
 position = Vector2(715, 556)
@@ -26,8 +26,29 @@ position = Vector2(473, 519)
 [node name="Ammo3" parent="." unique_id=185059094 instance=ExtResource("3_r0du0")]
 position = Vector2(938, 447)
 
+[node name="Ammo5" parent="." unique_id=376748305 instance=ExtResource("3_r0du0")]
+position = Vector2(1098, 1188)
+
 [node name="Ammo4" parent="." unique_id=1572851534 instance=ExtResource("3_r0du0")]
 position = Vector2(549, 594)
+
+[node name="Area2D" parent="." unique_id=175163964 instance=ExtResource("3_r0du0")]
+position = Vector2(193, 372)
+
+[node name="Area2D2" parent="." unique_id=1725988598 instance=ExtResource("3_r0du0")]
+position = Vector2(573, 115)
+
+[node name="Area2D3" parent="." unique_id=1532810141 instance=ExtResource("3_r0du0")]
+position = Vector2(183, 72)
+
+[node name="Area2D4" parent="." unique_id=303377343 instance=ExtResource("3_r0du0")]
+position = Vector2(270, 551)
+
+[node name="Area2D5" parent="." unique_id=1426011484 instance=ExtResource("3_r0du0")]
+position = Vector2(952, 177)
+
+[node name="Area2D6" parent="." unique_id=1203976737 instance=ExtResource("3_r0du0")]
+position = Vector2(1074, 598)
 
 [connection signal="player1IsKeyboard" from="." to="Player1" method="_on_main_player_1_is_keyboard"]
 [connection signal="player1IsKeyboard" from="." to="Player2" method="_on_main_player_1_is_keyboard"]

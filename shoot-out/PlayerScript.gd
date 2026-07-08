@@ -4,7 +4,6 @@ extends CharacterBody2D
 @export var player1isKeyboard : = true	
 @export var playerNumber : int
 
-@export var maxCrosshairDistance := 5
 @export var curserSens := 1
 
 @export var health := 2
@@ -46,21 +45,22 @@ func aim(delta : int):
 		var collision = $"Gun/Bullet Path".get_collider()
 		Ammo -= 1
 		if collision != null:
+			$"Gun/Line2D".add_point($Gun/Tip.position)
+			$"Gun/Line2D".add_point($Gun/Line2D.to_local(collision.global_position))
+			$"Gun/Line2D/BulletTime".start()
+			
 			if collision.is_in_group("Players"):
 				collision.health -= 1
 				print("HIT PLAYER")
+		else:
+			$"Gun/Line2D".add_point($Gun/Tip.position)
+			$"Gun/Line2D".add_point($"Gun/Bullet Path".target_position)
 		#Stun monster if hits them
 		#Kill dog if hits them
 		#Make sound on wall if hits them
-			
-	
-	
-	
 
 func concat(words : String, number : int):
 	return words + str(number)
-
-
 func _on_main_player_1_is_keyboard():
 	if playerNumber == 1:
 		isPlayerKeyboard = true
@@ -74,3 +74,7 @@ func _on_pick_up_range_area_entered(area: Area2D) -> void:
 		print(str(Ammo))
 	else:
 		print("MAX AMMO")
+
+
+func _on_bullet_time_timeout() -> void:
+	$"Gun/Line2D".clear_points()

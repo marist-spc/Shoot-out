@@ -29,8 +29,7 @@ player : int,
 key : Key, 
 joyPadDirection := Vector2.ZERO,
 joy_pad_button := JoyButton.JOY_BUTTON_A,
-isRightAxis := false,
-joy_axis := JOY_AXIS_INVALID):
+isRightAxis := false):
 	var action_name = Inputname + str(player)
 	InputMap.add_action(action_name)
 	if  player == 1 and isPlayer1Keyboard :
