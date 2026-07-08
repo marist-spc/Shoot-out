@@ -19,7 +19,7 @@ radius = 22.022715
 size = Vector2(14, 14)
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=656982608 groups=["Players"]]
-collision_mask = 23
+collision_mask = 55
 motion_mode = 1
 script = ExtResource("1_4flbx")
 
@@ -29,7 +29,7 @@ scale = Vector2(0.04, 0.04)
 texture = ExtResource("2_sweqy")
 
 [node name="CrossHair" type="Area2D" parent="." unique_id=843312437]
-position = Vector2(45, -21.5)
+position = Vector2(-33, 22)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CrossHair" unique_id=105302884]
 position = Vector2(11, 21.5)
@@ -52,16 +52,26 @@ shape = SubResource("CircleShape2D_told4")
 position = Vector2(-8.065901, -8.999729)
 rotation = 1.5625587
 scale = Vector2(0.7200012, 0.99999994)
+collision_layer = 8
+collision_mask = 2
+
+[node name="Line2D" type="Line2D" parent="Gun" unique_id=796291829]
+position = Vector2(0, 1)
+scale = Vector2(0.05, 0.05)
+points = PackedVector2Array(0, 0, 0, 0)
+closed = true
+width = 30.0
+default_color = Color(1, 1, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="BulletTime" type="Timer" parent="Gun/Line2D" unique_id=210783121]
+wait_time = 0.1
 
 [node name="Bullet Path" type="RayCast2D" parent="Gun" unique_id=1085662565]
 position = Vector2(0, 1)
 target_position = Vector2(817, -1)
-collision_mask = 15
-
-[node name="Line2D" type="Line2D" parent="Gun/Bullet Path" unique_id=796291829]
-scale = Vector2(0.05, 0.05)
-closed = true
-default_color = Color(1, 1, 0, 1)
+collision_mask = 7
 
 [node name="ArmSprite" type="Sprite2D" parent="Gun" unique_id=798326342]
 position = Vector2(11.122536, -0.99996644)
@@ -72,10 +82,10 @@ centered = false
 offset = Vector2(-200, 0)
 
 [node name="Tip" type="CollisionShape2D" parent="Gun" unique_id=1614727099]
-position = Vector2(52.661865, 10.246788)
+position = Vector2(52.627537, 13.246686)
 shape = SubResource("RectangleShape2D_wvlus")
 
-[node name="Untitled5720260707084104" type="Sprite2D" parent="Gun/Tip" unique_id=1149403542]
+[node name="Gunsprite" type="Sprite2D" parent="Gun/Tip" unique_id=1149403542]
 position = Vector2(-27.000006, 20.000006)
 rotation = 3.1415925
 scale = Vector2(0.06944433, 0.05)
@@ -83,3 +93,4 @@ texture = ExtResource("4_hqtel")
 
 [connection signal="area_entered" from="PickUpRange" to="." method="_on_pick_up_range_area_entered"]
 [connection signal="body_entered" from="PickUpRange" to="." method="_on_pick_up_range_body_entered"]
+[connection signal="timeout" from="Gun/Line2D/BulletTime" to="." method="_on_bullet_time_timeout"]

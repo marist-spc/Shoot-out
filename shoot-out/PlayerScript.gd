@@ -45,12 +45,16 @@ func aim(delta : int):
 		var collision = $"Gun/Bullet Path".get_collider()
 		Ammo -= 1
 		if collision != null:
-			$"Gun/Bullet Path/Line2D".add_point($Gun.position)
-			$"Gun/Bullet Path/Line2D".add_point(collision.position)
+			$"Gun/Line2D".add_point($Gun/Tip.position)
+			$"Gun/Line2D".add_point($Gun/Line2D.to_local(collision.global_position))
+			$"Gun/Line2D/BulletTime".start()
 			
 			if collision.is_in_group("Players"):
 				collision.health -= 1
 				print("HIT PLAYER")
+		else:
+			$"Gun/Line2D".add_point($Gun/Tip.position)
+			$"Gun/Line2D".add_point($"Gun/Bullet Path".target_position)
 		#Stun monster if hits them
 		#Kill dog if hits them
 		#Make sound on wall if hits them
@@ -70,3 +74,7 @@ func _on_pick_up_range_area_entered(area: Area2D) -> void:
 		print(str(Ammo))
 	else:
 		print("MAX AMMO")
+
+
+func _on_bullet_time_timeout() -> void:
+	$"Gun/Line2D".clear_points()
