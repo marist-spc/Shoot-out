@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bga24m73yf14m" path="res://PlayerScript.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://8i61j41elkl2" path="res://ItemPickUp.gd" id="2_onrkg"]
-[ext_resource type="Texture2D" uid="uid://ducj7ohurbt2x" path="res://art/Untitled57_20260707104118.png" id="2_sweqy"]
-[ext_resource type="Texture2D" uid="uid://cjjm7vj7m5gnh" path="res://art/Untitled57_20260707104247.png" id="4_2hs0m"]
-[ext_resource type="Texture2D" uid="uid://c6kpi7pmb6yvy" path="res://art/Untitled57_20260707084104.png" id="4_hqtel"]
+[ext_resource type="Texture2D" uid="uid://cgjhrnn0kb45y" path="res://art/Untitled57_20260707104118.png" id="2_sweqy"]
+[ext_resource type="Texture2D" uid="uid://bj2c30ihpwq1" path="res://art/Untitled57_20260707104247.png" id="4_2hs0m"]
+[ext_resource type="Texture2D" uid="uid://m1v0fyrh1jdk" path="res://art/Untitled57_20260707084104.png" id="4_hqtel"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_81axj"]
 
@@ -19,6 +19,7 @@ radius = 22.022715
 size = Vector2(14, 14)
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=656982608 groups=["Players"]]
+scale = Vector2(3, 3)
 collision_mask = 55
 motion_mode = 1
 script = ExtResource("1_4flbx")

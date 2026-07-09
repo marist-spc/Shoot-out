@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://b7ol08xfuio2d"]
+
+[ext_resource type="PackedScene" uid="uid://cgd3655o6xl3q" path="res://backyard.tscn" id="1_igbl3"]
+[ext_resource type="PackedScene" uid="uid://dpdkd7xa7ep5d" path="res://basement.tscn" id="2_btioj"]
+[ext_resource type="PackedScene" uid="uid://dtawdjhfekdxc" path="res://house.tscn" id="3_rbctl"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_igbl3"]
+vertices = PackedVector2Array(-598.96875, -1777.3984, -601.9531, -1084.4922, -888.1172, -1098.4609, -1111.8984, -875.2031, -1122.8906, -1934.6875, -556.14844, -1918.25, -766.0469, -772.8906, -767.9297, -465.28906, -928.3594, -469.8672, -915.5703, -786.8203, -1146.6797, 1128.6406, -1164.6563, 1651, -1958.9531, 1651, -1946.0469, -858.1875, -913, 824.60156, -918.9531, 890, -1108.4063, 1126, -929, -454.14063, -554, 890, -554, 1119.1172, -545.59375, -1802.1016, 1992.4219, 918.28125, 1689.6406, 925.85156, 1586.3203, 749.5, 1962.4922, 719.7031)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(2, 3, 4, 5, 0), PackedInt32Array(6, 7, 8, 9), PackedInt32Array(10, 11, 12, 13, 3), PackedInt32Array(14, 15, 16, 10, 3, 17), PackedInt32Array(15, 18, 19, 16), PackedInt32Array(8, 17, 3, 9), PackedInt32Array(2, 9, 3), PackedInt32Array(0, 5, 20), PackedInt32Array(21, 22, 23, 24)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-547, -1928, -535, -1796, -589, -1771, -592, -1074, -879, -1088, -905, -793, -919, -454, -903, 825, -908, 880, -544, 880, -544, 1129, -1108, 1136, -1137, 1138, -1155, 1661, -1969, 1661, -1956, -868, -1122, -885, -1133, -1945), PackedVector2Array(1568, 738, 1684, 936, 2004, 928, 1971, 709, 1567, 741), PackedVector2Array(-756, -782, -758, -455, -933, -460, -956, -454, -917, -797)])
+
+[node name="Final Map" type="Node2D" unique_id=197123593]
+
+[node name="backyard" parent="." unique_id=49312204 instance=ExtResource("1_igbl3")]
+position = Vector2(1501, 381)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="backyard" unique_id=1496365929]
+navigation_polygon = SubResource("NavigationPolygon_igbl3")
+
+[node name="Basement" parent="." unique_id=2087699307 instance=ExtResource("2_btioj")]
+
+[node name="Main Map" parent="." unique_id=1353141021 instance=ExtResource("3_rbctl")]
+position = Vector2(1523, 332)
