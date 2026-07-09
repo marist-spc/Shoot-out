@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://do43v7p7bdpoc" path="res://Shoot Out/art/Untitled54_20260706150616.png" id="1_dyl4d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1y2mc"]
-size = Vector2(111, 2814)
+size = Vector2(111, 2869)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hv5mt"]
 size = Vector2(40, 950)
@@ -167,7 +167,7 @@ texture = ExtResource("1_dyl4d")
 collision_layer = 2
 
 [node name="CollisionShape2D30" type="CollisionShape2D" parent="StaticBody2D" unique_id=1016202994]
-position = Vector2(2105.5, -617)
+position = Vector2(2105.5, -510.5)
 shape = SubResource("RectangleShape2D_1y2mc")
 debug_color = Color(0.7372549, 0.40392157, 0.627451, 0.41960785)
 
@@ -193,7 +193,7 @@ shape = SubResource("RectangleShape2D_f8r8q")
 debug_color = Color(0.7372549, 0.40392157, 0.627451, 0.41960785)
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D" unique_id=1469502473]
-position = Vector2(-572, -1379)
+position = Vector2(-572, -2421)
 shape = SubResource("RectangleShape2D_1y2mc")
 debug_color = Color(0.7372549, 0.40392157, 0.627451, 0.41960785)
 

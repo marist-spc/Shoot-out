@@ -4,9 +4,7 @@ extends CharacterBody2D
 @export var wandering_speed : float = 200.0
 @export var chasing_speed : float = 200.0
 
-
-
-var movement_target_global_position := Vector2(0,0)
+var target_to_chase : Node2D
 
 var curr_priority
 var isAggro : bool
@@ -25,25 +23,24 @@ func _ready():
 func actor_setup():
 	# Wait for the first physics frame so the NavigationServer can sync.
 	await get_tree().physics_frame
-
-	# Now that the navigation map is no longer empty, set the movement target.
-	set_movement_target(movement_target_global_position)
+	
+	enter_listening_mode()
 
 func set_movement_target(movement_target: Vector2):
-	navigation_agent.target_global_position = movement_target
+	navigation_agent.target_position = movement_target
 
 func enter_wandering():
 	movement_speed = wandering_speed
 	curr_priority = 0
 	isAggro = false
-	#Func for finding random new pos
+	#TODO
 func enter_listening_mode():
 	var players : Array = $"Player Detector".get_overlapping_bodies()
 	if !players.is_empty():      
 		movement_speed = listening_speed
 		if len(players)> 0:
 			players.sort_custom(func(a,b): return a if a.global_position.distance_to(global_position) < b.global_position.distance_to(global_position) else b)
-		set_movement_target(players[0].global_position)
+		target_to_chase = players[0]
 		curr_priority = 0
 	else:
 		enter_wandering()
@@ -51,21 +48,23 @@ func hear_noise(priority : int, pos : Vector2, time_to_stay : float):
 	if priority < curr_priority:
 		return
 	movement_speed = chasing_speed
+	target_to_chase = null
 	isAggro = true
 	curr_priority = priority
 	set_movement_target(pos)
 	$AggroTimer.wait_time = time_to_stay
 	$AggroTimer.start()
-	
+
 func _physics_process(delta):
 	if navigation_agent.is_navigation_finished():
-		if !isAggro:
-			enter_wandering()
-		else:
-			enter_listening_mode()
-
+		#if !isAggro:
+			#enter_wandering()
+		#else:
+				enter_listening_mode()
+	if target_to_chase != null:
+		set_movement_target(target_to_chase.global_position)
 	var current_agent_global_position: Vector2 = global_position
-	var next_path_global_position: Vector2 = navigation_agent.get_next_path_global_position()
+	var next_path_global_position: Vector2 = navigation_agent.get_next_path_position()
 
 	velocity = current_agent_global_position.direction_to(next_path_global_position) * movement_speed
 	move_and_slide()

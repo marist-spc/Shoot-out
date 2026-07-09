@@ -3,22 +3,28 @@
 [ext_resource type="PackedScene" uid="uid://r1mf41cdqoof" path="res://player.tscn" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://f8x321yvyejq" path="res://main.gd" id="1_uu6xs"]
 [ext_resource type="PackedScene" uid="uid://cmon5wwxb7qks" path="res://main_map.tscn" id="2_cm0pq"]
+[ext_resource type="PackedScene" uid="uid://cp18231pu3ato" path="res://Jibidoo.tscn" id="3_fos0i"]
 [ext_resource type="PackedScene" uid="uid://bsqooed8k12q0" path="res://Ammo.tscn" id="3_r0du0"]
 
 [node name="Main" type="Node2D" unique_id=1209284694]
 script = ExtResource("1_uu6xs")
 
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1893292051]
+position = Vector2(-61, 1189)
+zoom = Vector2(0.2, 0.2)
+
 [node name="Main Map" parent="." unique_id=1353141021 instance=ExtResource("2_cm0pq")]
 position = Vector2(724, 1564)
-
-[node name="Camera2D" type="Camera2D" parent="Main Map" unique_id=1893292051]
-position = Vector2(-785, -375)
-zoom = Vector2(0.2, 0.2)
 
 [node name="Player1" parent="." unique_id=2010301370 instance=ExtResource("1_glv2v")]
 position = Vector2(372, 334)
 playerNumber = 1
 curserSens = 1000
+
+[node name="Jibidoo" parent="." unique_id=105432123 instance=ExtResource("3_fos0i")]
+position = Vector2(1467, 899)
+scale = Vector2(3, 3)
+listening_speed = 100.0
 
 [node name="Player2" parent="." unique_id=1743038392 instance=ExtResource("1_glv2v")]
 position = Vector2(612, 326)

@@ -6,8 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://bj2c30ihpwq1" path="res://art/Untitled57_20260707104247.png" id="4_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://m1v0fyrh1jdk" path="res://art/Untitled57_20260707084104.png" id="4_hqtel"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_81axj"]
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hqtel"]
 radius = 10.5
 height = 39.0
@@ -29,14 +27,7 @@ position = Vector2(0, -0.9999999)
 scale = Vector2(0.04, 0.04)
 texture = ExtResource("2_sweqy")
 
-[node name="CrossHair" type="Area2D" parent="." unique_id=843312437]
-position = Vector2(-33, 22)
-collision_layer = 0
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CrossHair" unique_id=105302884]
-position = Vector2(11, 21.5)
-shape = SubResource("CircleShape2D_81axj")
+[node name="CrossHair" type="Node2D" parent="." unique_id=872828095]
 
 [node name="HitBox" type="CollisionShape2D" parent="." unique_id=889090620]
 position = Vector2(0, -1)
