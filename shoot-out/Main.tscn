@@ -2,29 +2,19 @@
 
 [ext_resource type="PackedScene" uid="uid://r1mf41cdqoof" path="res://player.tscn" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://f8x321yvyejq" path="res://main.gd" id="1_uu6xs"]
-[ext_resource type="PackedScene" uid="uid://cmon5wwxb7qks" path="res://main_map.tscn" id="2_cm0pq"]
-[ext_resource type="PackedScene" uid="uid://cp18231pu3ato" path="res://Jibidoo.tscn" id="3_fos0i"]
+[ext_resource type="PackedScene" uid="uid://b7ol08xfuio2d" path="res://final_map.tscn" id="2_cm0pq"]
 [ext_resource type="PackedScene" uid="uid://bsqooed8k12q0" path="res://Ammo.tscn" id="3_r0du0"]
 
 [node name="Main" type="Node2D" unique_id=1209284694]
 script = ExtResource("1_uu6xs")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1893292051]
-position = Vector2(-61, 1189)
-zoom = Vector2(0.2, 0.2)
-
-[node name="Main Map" parent="." unique_id=1353141021 instance=ExtResource("2_cm0pq")]
-position = Vector2(724, 1564)
+[node name="Final Map" parent="." unique_id=197123593 instance=ExtResource("2_cm0pq")]
+position = Vector2(-932, 1259)
 
 [node name="Player1" parent="." unique_id=2010301370 instance=ExtResource("1_glv2v")]
 position = Vector2(372, 334)
 playerNumber = 1
 curserSens = 1000
-
-[node name="Jibidoo" parent="." unique_id=105432123 instance=ExtResource("3_fos0i")]
-position = Vector2(1467, 899)
-scale = Vector2(3, 3)
-listening_speed = 100.0
 
 [node name="Player2" parent="." unique_id=1743038392 instance=ExtResource("1_glv2v")]
 position = Vector2(612, 326)
@@ -32,10 +22,10 @@ playerNumber = 2
 curserSens = 1000
 
 [node name="Ammo" parent="." unique_id=614470022 instance=ExtResource("3_r0du0")]
-position = Vector2(901, 936)
+position = Vector2(715, 556)
 
 [node name="Ammo2" parent="." unique_id=186456345 instance=ExtResource("3_r0du0")]
-position = Vector2(2341, 1982.9999)
+position = Vector2(473, 519)
 
 [node name="Ammo3" parent="." unique_id=185059094 instance=ExtResource("3_r0du0")]
 position = Vector2(938, 447)
@@ -44,10 +34,10 @@ position = Vector2(938, 447)
 position = Vector2(1098, 1188)
 
 [node name="Ammo4" parent="." unique_id=1572851534 instance=ExtResource("3_r0du0")]
-position = Vector2(701.00006, 1905.9999)
+position = Vector2(549, 594)
 
 [node name="Area2D" parent="." unique_id=175163964 instance=ExtResource("3_r0du0")]
-position = Vector2(663, 2307)
+position = Vector2(193, 372)
 
 [node name="Area2D2" parent="." unique_id=1725988598 instance=ExtResource("3_r0du0")]
 position = Vector2(573, 115)
@@ -56,13 +46,17 @@ position = Vector2(573, 115)
 position = Vector2(183, 72)
 
 [node name="Area2D4" parent="." unique_id=303377343 instance=ExtResource("3_r0du0")]
-position = Vector2(-3.9999695, 933)
+position = Vector2(270, 551)
 
 [node name="Area2D5" parent="." unique_id=1426011484 instance=ExtResource("3_r0du0")]
 position = Vector2(952, 177)
 
 [node name="Area2D6" parent="." unique_id=1203976737 instance=ExtResource("3_r0du0")]
-position = Vector2(2203, 322.00003)
+position = Vector2(1074, 598)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1954441880]
+position = Vector2(-72, 1152)
+zoom = Vector2(0.2, 0.2)
 
 [connection signal="player1IsKeyboard" from="." to="Player1" method="_on_main_player_1_is_keyboard"]
 [connection signal="player1IsKeyboard" from="." to="Player2" method="_on_main_player_1_is_keyboard"]
