@@ -2,10 +2,18 @@
 
 [ext_resource type="PackedScene" uid="uid://r1mf41cdqoof" path="res://player.tscn" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://f8x321yvyejq" path="res://main.gd" id="1_uu6xs"]
+[ext_resource type="PackedScene" uid="uid://cmon5wwxb7qks" path="res://main_map.tscn" id="2_cm0pq"]
 [ext_resource type="PackedScene" uid="uid://bsqooed8k12q0" path="res://Ammo.tscn" id="3_r0du0"]
 
 [node name="Main" type="Node2D" unique_id=1209284694]
 script = ExtResource("1_uu6xs")
+
+[node name="Main Map" parent="." unique_id=1353141021 instance=ExtResource("2_cm0pq")]
+position = Vector2(724, 1564)
+
+[node name="Camera2D" type="Camera2D" parent="Main Map" unique_id=1893292051]
+position = Vector2(-785, -375)
+zoom = Vector2(0.2, 0.2)
 
 [node name="Player1" parent="." unique_id=2010301370 instance=ExtResource("1_glv2v")]
 position = Vector2(372, 334)

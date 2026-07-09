@@ -9,7 +9,7 @@ extends CharacterBody2D
 @export var health := 2
 
 var Ammo : int
-const SPEED = 100.0
+const SPEED = 300
 const JUMP_VELOCITY = -400.0
 
 
