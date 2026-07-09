@@ -110,9 +110,9 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(55, -745, 367, -745, 372, -127, -803, -127, -793, -758, -550, -743, -541, -481, 54, -478)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_an8t4"]
-vertices = PackedVector2Array(698.8203, -790.1406, 685.78906, -967.53906, 880.3906, -959.3906, 886.39844, -817.28125, 458.09375, -169.03125, 463.89844, -808.2031, 1458.1406, -172.96094, 1380.5625, -802.7422, 1469.8516, -957.46875, 1404.5313, -960.5781)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 0, 6), PackedInt32Array(6, 0, 3, 7), PackedInt32Array(8, 6, 7, 9)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(454, -819, 688, -801, 675, -978, 890, -969, 896, -827, 1372, -813, 1396, -971, 1480, -967, 1468, -163, 448, -159)])
+vertices = PackedVector2Array(1407.7109, -876.8203, 1429.0313, -902.52344, 1457.6016, -173.0625, 1378.75, -802.7969, 886.39844, -817.28125, 540.85156, -178.92969, 532.1172, -762.65625, 698.6328, -792.7578, 685.78906, -967.53906, 880.3906, -959.3906)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 3, 2, 5, 6, 7), PackedInt32Array(7, 8, 9, 4)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(522, -771, 688, -801, 675, -978, 890, -969, 896, -827, 1372, -813, 1399, -882, 1438, -929, 1468, -163, 531, -169)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_d2wa0"]
 vertices = PackedVector2Array(1589.1172, -44.21875, 1578.1172, -960.89844, 2009.0313, -957.0781, 2014.9609, 779.84375, 1062.7813, 765.1406, 1045.2188, -32.21875)
@@ -160,7 +160,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(1782, -1090, 1775, -915, 2008, -917, 2004, -1132)])
 
 [node name="Main Map" type="Sprite2D" unique_id=1353141021]
-position = Vector2(2062, 1956)
+position = Vector2(2019, 2176)
 texture = ExtResource("1_dyl4d")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1607645035]
