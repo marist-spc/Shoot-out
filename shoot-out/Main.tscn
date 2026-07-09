@@ -32,10 +32,10 @@ playerNumber = 2
 curserSens = 1000
 
 [node name="Ammo" parent="." unique_id=614470022 instance=ExtResource("3_r0du0")]
-position = Vector2(715, 556)
+position = Vector2(901, 936)
 
 [node name="Ammo2" parent="." unique_id=186456345 instance=ExtResource("3_r0du0")]
-position = Vector2(473, 519)
+position = Vector2(2341, 1982.9999)
 
 [node name="Ammo3" parent="." unique_id=185059094 instance=ExtResource("3_r0du0")]
 position = Vector2(938, 447)
@@ -44,10 +44,10 @@ position = Vector2(938, 447)
 position = Vector2(1098, 1188)
 
 [node name="Ammo4" parent="." unique_id=1572851534 instance=ExtResource("3_r0du0")]
-position = Vector2(549, 594)
+position = Vector2(701.00006, 1905.9999)
 
 [node name="Area2D" parent="." unique_id=175163964 instance=ExtResource("3_r0du0")]
-position = Vector2(193, 372)
+position = Vector2(663, 2307)
 
 [node name="Area2D2" parent="." unique_id=1725988598 instance=ExtResource("3_r0du0")]
 position = Vector2(573, 115)
@@ -56,13 +56,13 @@ position = Vector2(573, 115)
 position = Vector2(183, 72)
 
 [node name="Area2D4" parent="." unique_id=303377343 instance=ExtResource("3_r0du0")]
-position = Vector2(270, 551)
+position = Vector2(-3.9999695, 933)
 
 [node name="Area2D5" parent="." unique_id=1426011484 instance=ExtResource("3_r0du0")]
 position = Vector2(952, 177)
 
 [node name="Area2D6" parent="." unique_id=1203976737 instance=ExtResource("3_r0du0")]
-position = Vector2(1074, 598)
+position = Vector2(2203, 322.00003)
 
 [connection signal="player1IsKeyboard" from="." to="Player1" method="_on_main_player_1_is_keyboard"]
 [connection signal="player1IsKeyboard" from="." to="Player2" method="_on_main_player_1_is_keyboard"]

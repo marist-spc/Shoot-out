@@ -1,8 +1,8 @@
 extends CharacterBody2D
 @export var movement_speed: float = 200.0
-@export var listening_speed : float = 200.0
+@export var listening_speed : float = 100.0
 @export var wandering_speed : float = 200.0
-@export var chasing_speed : float = 200.0
+@export var chasing_speed : float = 500.0
 
 var target_to_chase : Node2D
 
@@ -60,7 +60,7 @@ func _physics_process(delta):
 		#if !isAggro:
 			#enter_wandering()
 		#else:
-				enter_listening_mode()
+			enter_listening_mode()
 	if target_to_chase != null:
 		set_movement_target(target_to_chase.global_position)
 	var current_agent_global_position: Vector2 = global_position

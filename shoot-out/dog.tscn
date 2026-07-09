@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://caprmnhd0vv55"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_told4"]
+
+[node name="Dog" type="CharacterBody2D" unique_id=1022778373]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1866190591]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=73360392]
+shape = SubResource("CircleShape2D_told4")

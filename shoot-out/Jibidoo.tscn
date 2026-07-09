@@ -11,7 +11,6 @@ height = 98.0
 radius = 297.01514
 
 [node name="Jibidoo" type="CharacterBody2D" unique_id=105432123]
-collision_mask = 3
 script = ExtResource("1_3jb82")
 listening_speed = 500.0
 
@@ -23,6 +22,7 @@ texture = ExtResource("2_tblx2")
 shape = SubResource("CapsuleShape2D_told4")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1327291502]
+navigation_layers = 2
 
 [node name="AggroTimer" type="Timer" parent="." unique_id=511567099]
 
