@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cgd3655o6xl3q"]
 
-[ext_resource type="Texture2D" path="res://Shoot Out /art /Untitled54_20260706151724.png" id="1_08hf5"]
+[ext_resource type="Texture2D" uid="uid://dann8h58ksd6g" path="res://Shoot Out/art/Untitled54_20260706151724.png" id="1_08hf5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ivl7"]
 size = Vector2(902.5, 1084)
@@ -17,39 +17,39 @@ size = Vector2(981.75, 115)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1y2mc"]
 size = Vector2(81.5, 4165.5)
 
-[node name="backyard" type="Sprite2D" unique_id=49312204]
+[node name="backyard" type="Node2D" unique_id=887470838]
 position = Vector2(1895, 2629)
+
+[node name="Untitled5420260706151724" type="Sprite2D" parent="." unique_id=6322651]
+position = Vector2(23, 24)
 texture = ExtResource("1_08hf5")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1608468389]
-visible = false
+light_mask = 2
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1489999049]
-visible = false
 position = Vector2(-1601.25, -1446)
 shape = SubResource("RectangleShape2D_2ivl7")
 debug_color = Color(0.7372549, 0.40392157, 0.627451, 0.41960785)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=730014392]
-visible = false
 position = Vector2(-7.25, -2039)
 shape = SubResource("RectangleShape2D_hv5mt")
 debug_color = Color(0.7372549, 0.40392157, 0.627451, 0.41960785)
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=1402879996]
-visible = false
 position = Vector2(-2023.75, 30.75)
 shape = SubResource("RectangleShape2D_xpkh4")
 debug_color = Color(0.7372549, 0.40392157, 0.627451, 0.41960785)
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=923522292]
-visible = false
 position = Vector2(-1562, 1736)
 shape = SubResource("RectangleShape2D_f8r8q")
 debug_color = Color(0.7372549, 0.40392157, 0.627451, 0.41960785)
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D" unique_id=1807024802]
-visible = false
 position = Vector2(2038.75, -28.25)
 shape = SubResource("RectangleShape2D_1y2mc")
 debug_color = Color(0.7372549, 0.40392157, 0.627451, 0.41960785)

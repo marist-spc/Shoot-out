@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://bj7ag326e18wq" path="res://jibidoo.gd" id="1_3jb82"]
 [ext_resource type="Texture2D" uid="uid://doylihcrwe5h1" path="res://art/Big Bird.png" id="2_tblx2"]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2hs0m"]
+light_mode = 2
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_told4"]
 radius = 21.0
 height = 98.0
@@ -10,7 +13,11 @@ height = 98.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_told4"]
 radius = 297.01514
 
-[node name="Jibidoo" type="CharacterBody2D" unique_id=105432123]
+[node name="Jibidoo" type="CharacterBody2D" unique_id=105432123 groups=["Jibidoo"]]
+light_mask = 2
+visibility_layer = 33
+material = SubResource("CanvasItemMaterial_2hs0m")
+collision_layer = 32
 script = ExtResource("1_3jb82")
 listening_speed = 500.0
 
@@ -33,4 +40,8 @@ collision_mask = 33
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player Detector" unique_id=779319187]
 shape = SubResource("CircleShape2D_told4")
 
+[node name="Injury Timer" type="Timer" parent="." unique_id=1148341629]
+wait_time = 2.0
+
 [connection signal="timeout" from="AggroTimer" to="." method="_on_aggro_timer_timeout"]
+[connection signal="timeout" from="Injury Timer" to="." method="_on_injury_timer_timeout"]

@@ -44,6 +44,7 @@ shoot2={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="World"
 2d_physics/layer_3="Bullets"
+2d_physics/layer_4="Blocking Items"
 2d_physics/layer_5="Items"
 2d_physics/layer_6="Jibidoo"
 

@@ -1,10 +1,14 @@
 [gd_scene format=3 uid="uid://r1mf41cdqoof"]
 
 [ext_resource type="Script" uid="uid://bga24m73yf14m" path="res://PlayerScript.gd" id="1_4flbx"]
-[ext_resource type="Script" uid="uid://8i61j41elkl2" path="res://ItemPickUp.gd" id="2_onrkg"]
 [ext_resource type="Texture2D" uid="uid://cgjhrnn0kb45y" path="res://art/Untitled57_20260707104118.png" id="2_sweqy"]
 [ext_resource type="Texture2D" uid="uid://bj2c30ihpwq1" path="res://art/Untitled57_20260707104247.png" id="4_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://m1v0fyrh1jdk" path="res://art/Untitled57_20260707084104.png" id="4_hqtel"]
+[ext_resource type="Texture2D" uid="uid://dgytejcolpmq1" path="res://light.png" id="6_2hs0m"]
+[ext_resource type="Script" uid="uid://cwtwiy1ph7gmo" path="res://heart_beat_area.gd" id="7_1jxqw"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2hs0m"]
+light_mode = 2
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hqtel"]
 radius = 10.5
@@ -13,14 +17,42 @@ height = 39.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_told4"]
 radius = 22.022715
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wvlus"]
-size = Vector2(14, 14)
+[sub_resource type="CircleShape2D" id="CircleShape2D_wvlus"]
+radius = 300.3393
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_81axj"]
+radius = 148.18045
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ln2ko"]
+radius = 245.35594
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=656982608 groups=["Players"]]
+light_mask = 2
+material = SubResource("CanvasItemMaterial_2hs0m")
 scale = Vector2(3, 3)
 collision_mask = 54
 motion_mode = 1
 script = ExtResource("1_4flbx")
+
+[node name="PointLight2D2" type="PointLight2D" parent="." unique_id=1666431808]
+show_behind_parent = true
+blend_mode = 2
+range_item_cull_mask = 2
+shadow_enabled = true
+shadow_filter_smooth = 64.0
+shadow_item_cull_mask = 3
+texture = ExtResource("6_2hs0m")
+texture_scale = 3.71
+height = 169.0
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=607958957]
+show_behind_parent = true
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+shadow_filter_smooth = 64.0
+texture = ExtResource("6_2hs0m")
+texture_scale = 3.71
+height = 169.0
 
 [node name="Player Image" type="Sprite2D" parent="." unique_id=1245816332]
 position = Vector2(0, -0.9999999)
@@ -36,8 +68,7 @@ shape = SubResource("CapsuleShape2D_hqtel")
 
 [node name="PickUpRange" type="Area2D" parent="." unique_id=1966258144]
 scale = Vector2(3, 3)
-collision_mask = 16
-script = ExtResource("2_onrkg")
+collision_mask = 48
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="PickUpRange" unique_id=1388820053]
 shape = SubResource("CircleShape2D_told4")
@@ -45,9 +76,13 @@ shape = SubResource("CircleShape2D_told4")
 [node name="Gun" type="Area2D" parent="." unique_id=1722283633]
 position = Vector2(-8.065901, -8.999729)
 rotation = 1.5625587
-scale = Vector2(0.7200012, 0.99999994)
-collision_layer = 8
-collision_mask = 2
+collision_mask = 32
+
+[node name="Gunsprite" type="Sprite2D" parent="Gun" unique_id=1149403542]
+position = Vector2(25.627535, 33.24668)
+rotation = 3.1415925
+scale = Vector2(0.06944432, 0.05)
+texture = ExtResource("4_hqtel")
 
 [node name="Line2D" type="Line2D" parent="Gun" unique_id=796291829]
 position = Vector2(0, 1)
@@ -65,7 +100,7 @@ wait_time = 0.1
 [node name="Bullet Path" type="RayCast2D" parent="Gun" unique_id=1085662565]
 position = Vector2(0, 1)
 target_position = Vector2(817, -1)
-collision_mask = 7
+collision_mask = 35
 
 [node name="ArmSprite" type="Sprite2D" parent="Gun" unique_id=798326342]
 position = Vector2(11.122536, -0.99996644)
@@ -75,16 +110,36 @@ texture = ExtResource("4_2hs0m")
 centered = false
 offset = Vector2(-200, 0)
 
-[node name="Tip" type="CollisionShape2D" parent="Gun" unique_id=1614727099]
+[node name="Tip" type="Node2D" parent="Gun" unique_id=1908268272]
 position = Vector2(52.627537, 13.246686)
-shape = SubResource("RectangleShape2D_wvlus")
 
-[node name="Gunsprite" type="Sprite2D" parent="Gun/Tip" unique_id=1149403542]
-position = Vector2(-27.000006, 20.000006)
-rotation = 3.1415925
-scale = Vector2(0.06944433, 0.05)
-texture = ExtResource("4_hqtel")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gun" unique_id=2146147320]
+shape = SubResource("CircleShape2D_wvlus")
+
+[node name="Heart Beat Area" type="Area2D" parent="." unique_id=275925857]
+collision_mask = 32
+script = ExtResource("7_1jxqw")
+
+[node name="Heartbeat Timer" type="Timer" parent="Heart Beat Area" unique_id=1929737008]
+wait_time = 0.5
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Heart Beat Area" unique_id=1543282085]
+modulate = Color(0, 0, 0, 0.28235295)
+texture = ExtResource("6_2hs0m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Heart Beat Area" unique_id=1938943493]
+shape = SubResource("CircleShape2D_81axj")
+
+[node name="Gun_Shot_Collision_Noise" type="Area2D" parent="." unique_id=561607744]
+position = Vector2(-541, -265)
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gun_Shot_Collision_Noise" unique_id=1645486602]
+position = Vector2(1516.3334, -1437.3334)
+shape = SubResource("CircleShape2D_ln2ko")
 
 [connection signal="area_entered" from="PickUpRange" to="." method="_on_pick_up_range_area_entered"]
 [connection signal="body_entered" from="PickUpRange" to="." method="_on_pick_up_range_body_entered"]
 [connection signal="timeout" from="Gun/Line2D/BulletTime" to="." method="_on_bullet_time_timeout"]
+[connection signal="timeout" from="Heart Beat Area/Heartbeat Timer" to="Heart Beat Area" method="_on_heartbeat_timer_timeout"]

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://nh037g87202o"]
+
+[ext_resource type="Texture2D" uid="uid://djcb8y3aoati1" path="res://art/Key.png" id="1_up4cr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_told4"]
+radius = 24.0
+
+[node name="Key" type="Area2D" unique_id=1909544377 groups=["Key"]]
+scale = Vector2(3, 3)
+collision_layer = 17
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1808304455 groups=["Key"]]
+shape = SubResource("CircleShape2D_told4")
+
+[node name="Key" type="Sprite2D" parent="." unique_id=2096872238 groups=["Key"]]
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("1_up4cr")

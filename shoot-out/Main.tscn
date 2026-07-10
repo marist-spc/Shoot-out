@@ -3,60 +3,124 @@
 [ext_resource type="PackedScene" uid="uid://r1mf41cdqoof" path="res://player.tscn" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://f8x321yvyejq" path="res://main.gd" id="1_uu6xs"]
 [ext_resource type="PackedScene" uid="uid://b7ol08xfuio2d" path="res://final_map.tscn" id="2_cm0pq"]
+[ext_resource type="PackedScene" uid="uid://cp18231pu3ato" path="res://Jibidoo.tscn" id="3_fos0i"]
 [ext_resource type="PackedScene" uid="uid://bsqooed8k12q0" path="res://Ammo.tscn" id="3_r0du0"]
+[ext_resource type="PackedScene" uid="uid://nh037g87202o" path="res://key.tscn" id="6_3dxm6"]
 
 [node name="Main" type="Node2D" unique_id=1209284694]
 script = ExtResource("1_uu6xs")
 
 [node name="Final Map" parent="." unique_id=197123593 instance=ExtResource("2_cm0pq")]
-position = Vector2(-932, 1259)
 
-[node name="Player1" parent="." unique_id=2010301370 instance=ExtResource("1_glv2v")]
-position = Vector2(372, 334)
+[node name="Player1" parent="." unique_id=2010301370 node_paths=PackedStringArray("main_script") instance=ExtResource("1_glv2v")]
+position = Vector2(1928.0001, 1580)
 playerNumber = 1
 curserSens = 1000
+main_script = NodePath("..")
 
-[node name="Player2" parent="." unique_id=1743038392 instance=ExtResource("1_glv2v")]
-position = Vector2(612, 326)
+[node name="Node2D" type="Node2D" parent="Player1" unique_id=249340212]
+
+[node name="Player2" parent="." unique_id=1743038392 node_paths=PackedStringArray("main_script") instance=ExtResource("1_glv2v")]
+position = Vector2(2047.0001, 1583)
 playerNumber = 2
 curserSens = 1000
+main_script = NodePath("..")
 
 [node name="Ammo" parent="." unique_id=614470022 instance=ExtResource("3_r0du0")]
-position = Vector2(715, 556)
+position = Vector2(1690.0004, 1447)
 
 [node name="Ammo2" parent="." unique_id=186456345 instance=ExtResource("3_r0du0")]
-position = Vector2(473, 519)
+position = Vector2(3702, 2861)
 
 [node name="Ammo3" parent="." unique_id=185059094 instance=ExtResource("3_r0du0")]
-position = Vector2(938, 447)
+position = Vector2(2289, 3359)
 
 [node name="Ammo5" parent="." unique_id=376748305 instance=ExtResource("3_r0du0")]
 position = Vector2(1098, 1188)
 
 [node name="Ammo4" parent="." unique_id=1572851534 instance=ExtResource("3_r0du0")]
-position = Vector2(549, 594)
+position = Vector2(3607.9998, 1277)
+
+[node name="Area2D8" parent="." unique_id=1062261062 instance=ExtResource("3_r0du0")]
+position = Vector2(8862, 6803)
+scale = Vector2(25, 25)
 
 [node name="Area2D" parent="." unique_id=175163964 instance=ExtResource("3_r0du0")]
-position = Vector2(193, 372)
+position = Vector2(1447.0001, 1188)
 
 [node name="Area2D2" parent="." unique_id=1725988598 instance=ExtResource("3_r0du0")]
-position = Vector2(573, 115)
+position = Vector2(373.00012, 2419)
 
 [node name="Area2D3" parent="." unique_id=1532810141 instance=ExtResource("3_r0du0")]
-position = Vector2(183, 72)
+position = Vector2(2072, 3837.0005)
+
+[node name="Area2D7" parent="." unique_id=254107373 instance=ExtResource("3_r0du0")]
+position = Vector2(13233.001, 24638)
+scale = Vector2(25, 25)
 
 [node name="Area2D4" parent="." unique_id=303377343 instance=ExtResource("3_r0du0")]
-position = Vector2(270, 551)
+position = Vector2(3608, 3748.0005)
 
 [node name="Area2D5" parent="." unique_id=1426011484 instance=ExtResource("3_r0du0")]
-position = Vector2(952, 177)
+position = Vector2(3349.0002, 1468)
 
 [node name="Area2D6" parent="." unique_id=1203976737 instance=ExtResource("3_r0du0")]
-position = Vector2(1074, 598)
+position = Vector2(667, 3067)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1954441880]
-position = Vector2(-72, 1152)
 zoom = Vector2(0.2, 0.2)
+
+[node name="Jibidoo" parent="." unique_id=105432123 node_paths=PackedStringArray("Player1", "Player2", "WonderNodes") instance=ExtResource("3_fos0i")]
+position = Vector2(481, 3647)
+scale = Vector2(4, 4)
+listening_speed = 100.0
+retreat_speed = 700.0
+Player1 = NodePath("../Player1")
+Player2 = NodePath("../Player2")
+WonderNodes = NodePath("../WanderNodes")
+
+[node name="WanderNodes" type="Node2D" parent="." unique_id=393015497]
+
+[node name="Node2D3" type="Node2D" parent="WanderNodes" unique_id=194947129]
+position = Vector2(3162, 1190)
+
+[node name="Node2D2" type="Node2D" parent="WanderNodes" unique_id=640992954]
+position = Vector2(1048, 4116)
+
+[node name="Node2D5" type="Node2D" parent="WanderNodes" unique_id=1892720106]
+position = Vector2(2626, 953)
+
+[node name="Node2D4" type="Node2D" parent="WanderNodes" unique_id=1468772481]
+position = Vector2(1857, 2592)
+
+[node name="Node2D" type="Node2D" parent="WanderNodes" unique_id=1948373052]
+position = Vector2(334, 4063)
+
+[node name="KeySpawnLocations" type="Node2D" parent="." unique_id=1096855593]
+
+[node name="Node2D7" type="Node2D" parent="KeySpawnLocations" unique_id=1147398725]
+position = Vector2(1048, 1231)
+
+[node name="Node2D6" type="Node2D" parent="KeySpawnLocations" unique_id=618473830]
+position = Vector2(2190, 2093)
+
+[node name="Node2D5" type="Node2D" parent="KeySpawnLocations" unique_id=1021372457]
+position = Vector2(1577, 3312)
+
+[node name="Node2D4" type="Node2D" parent="KeySpawnLocations" unique_id=180703372]
+position = Vector2(1052, 4116)
+
+[node name="Node2D3" type="Node2D" parent="KeySpawnLocations" unique_id=1366728625]
+position = Vector2(3209, 1447)
+
+[node name="Node2D2" type="Node2D" parent="KeySpawnLocations" unique_id=1041916290]
+position = Vector2(2458, 1023)
+
+[node name="Node2D" type="Node2D" parent="KeySpawnLocations" unique_id=426805586]
+position = Vector2(382, 4116)
+
+[node name="Key" parent="." unique_id=648335912 instance=ExtResource("6_3dxm6")]
+position = Vector2(12733, 4776)
 
 [connection signal="player1IsKeyboard" from="." to="Player1" method="_on_main_player_1_is_keyboard"]
 [connection signal="player1IsKeyboard" from="." to="Player2" method="_on_main_player_1_is_keyboard"]

@@ -3,6 +3,9 @@ extends Node2D
 signal player1IsKeyboard
 var isPlayer1Keyboard := true
 
+@export var keyScene:PackedScene = preload("res://key.tscn")
+
+
 func initialize():
 	for i in range(1,3):
 		if isPlayer1Keyboard and i == 1:
@@ -10,6 +13,7 @@ func initialize():
 			create_input("left",i, KEY_A)
 			create_input("down",i,KEY_S)
 			create_input("right",i, KEY_D)
+			create_input("hold_breath",i,KEY_SPACE)
 		else:
 			create_input("up",i, KEY_0, Vector2(0,-1))
 			create_input("left",i, KEY_0, Vector2(-1,0))
@@ -19,10 +23,8 @@ func initialize():
 			create_input("aim_left",i, KEY_0, Vector2(-1,0), JOY_BUTTON_A, true)
 			create_input("aim_down",i,KEY_0, Vector2(0,1), JOY_BUTTON_A, true)
 			create_input("aim_right",i, KEY_0, Vector2(1,0), JOY_BUTTON_A, true)
+			create_input("hold_breath",i,KEY_0, Vector2.ZERO, JOY_BUTTON_A)
 
-			
-		
-	
 func create_input(
 Inputname : String,
 player : int,
@@ -60,9 +62,22 @@ isRightAxis := false):
 			else:
 				input_key.device = player - 1
 			InputMap.action_add_event(action_name,input_key)
+
+func distrubute_keys(keys : int):
+	var nums := range(0,len($KeySpawnLocations.get_children()))
+	nums.shuffle()
+	for i in nums:
+		var new_key = keyScene.instantiate()
+		add_child(new_key)
+		new_key.global_position = $KeySpawnLocations.get_children()[i].global_position
+		
+
+func _physics_process(delta: float) -> void:
+	$Camera2D.position = $Player1.position.lerp($Player2.position, 0.5)
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	distrubute_keys(4)
 	var controllers := Input.get_connected_joypads()
 	if controllers.size() >= 2:
 		isPlayer1Keyboard = false
@@ -75,9 +90,3 @@ func _ready() -> void:
 		player1IsKeyboard.emit()
 		print("NO CONTROLLER FOUND")
 	initialize()
-
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

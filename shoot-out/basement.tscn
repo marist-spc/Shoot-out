@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://dpdkd7xa7ep5d"]
 
-[ext_resource type="Texture2D" path="res://Shoot Out /art /Untitled54_20260706151332.png" id="1_uyr1m"]
+[ext_resource type="Texture2D" uid="uid://i33ypt86bbbh" path="res://Shoot Out/art/Untitled54_20260706151332.png" id="1_uyr1m"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_uyr1m"]
+polygon = PackedVector2Array(1552, 856, -911, 851, -911, 921, -575, 923, -579, 1172, -1185, 1175, -1179, 1269, -1187, 1705, -1138, 1709, 1197, 1704, 1270, 1817, 1449, 1698, 2037, 1703, 2043, 1278, 2052, 830, 2007, 829, 2004.0469, 1277.654, 1628.8237, 1274.3215, 1608, 1242, 1113, 1564, 1153, 1627, -1135, 1611, -1125, 1275, -70, 1249, -90, 910, 1445, 931, 1552, 926)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_08hf5"]
 size = Vector2(2464, 66)
@@ -32,21 +35,23 @@ size = Vector2(46, 452.75)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2m5ta"]
 size = Vector2(416, 371)
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_uyr1m"]
-vertices = PackedVector2Array(-32.859375, 927.03906, 1375.9922, 933.8281, 985.28906, 1174.7031, -27.859375, 1293, 2004, 924.7578, 2004, 1229.5078, 1641.0391, 1212.3203, 1615.0313, 1142.9297, 1646, 974.0078, 1646, 916.2422, 1054.3594, 1288.2578, 1070, 1490.5234, -1078.1563, 1569.0313, -1082.8281, 1293, 1070, 1575.9609)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 8), PackedInt32Array(8, 9, 4), PackedInt32Array(10, 8, 7, 11), PackedInt32Array(12, 13, 3, 14), PackedInt32Array(11, 14, 3, 2, 10)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-43, 917, -38, 1283, -1093, 1283, -1088, 1579, 1080, 1586, 1106, 1509, 1597, 1215, 1634, 1222, 2014, 1240, 1934, 861, 1637, 865, 1632, 957, 1058, 1275, 999, 1178, 1411, 924)])
-
-[node name="Basement" type="Sprite2D" unique_id=2087699307]
+[node name="Basement" type="Node2D" unique_id=1751023316]
 position = Vector2(1538, 352)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=1103705858]
+occluder = SubResource("OccluderPolygon2D_uyr1m")
+
+[node name="Untitled5420260706151332" type="Sprite2D" parent="." unique_id=2049023681]
+position = Vector2(-24, 45)
 texture = ExtResource("1_uyr1m")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=301481117]
-
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1737552745]
+light_mask = 2
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1855328089]
-position = Vector2(322, 863)
+position = Vector2(322, 899)
 shape = SubResource("RectangleShape2D_08hf5")
 debug_color = Color(0.7372549, 0.40392157, 0.627451, 0.41960785)
 
@@ -96,6 +101,3 @@ debug_color = Color(0.7372549, 0.40392157, 0.627451, 0.41960785)
 position = Vector2(-284, 1082.5)
 shape = SubResource("RectangleShape2D_2m5ta")
 debug_color = Color(0.7372549, 0.40392157, 0.627451, 0.41960785)
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="StaticBody2D" unique_id=819588445]
-navigation_polygon = SubResource("NavigationPolygon_uyr1m")

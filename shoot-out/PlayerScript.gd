@@ -8,12 +8,22 @@ extends CharacterBody2D
 
 @export var health := 2
 
+@export var main_script : Node2D
+
+var spawnPos : Vector2
+@export var deathTime := 10
+var isDead
 var Ammo : int
+var keys : int
 const SPEED = 300
 const JUMP_VELOCITY = -400.0
 
+var isVisibleToMonster : bool
 
+func _ready() -> void:
+	spawnPos = global_position
 func _physics_process(delta: float) -> void:
+	$"Heart Beat Area".isVisibleToMonster = isVisibleToMonster
 	var x = Input.get_axis(concat("left",playerNumber), concat("right",playerNumber))
 	var y = Input.get_axis(concat("up",playerNumber), concat("down",playerNumber))
 	var direction := Vector2(x,y)
@@ -28,7 +38,7 @@ func _physics_process(delta: float) -> void:
 func aim(delta : int):
 	var shootButton
 	if isPlayerKeyboard:
-		$CrossHair.global_position = get_viewport().get_mouse_position()
+		$CrossHair.global_position = get_global_mouse_position()
 		shootButton = Input.is_action_just_pressed("mouse_click")
 	else:
 		var x = Input.get_axis(concat("aim_left",playerNumber), concat("aim_right",playerNumber))
@@ -44,23 +54,34 @@ func aim(delta : int):
 	if shootButton and Ammo != 0:
 		var collision = $"Gun/Bullet Path".get_collider()
 		Ammo -= 1
+		if !$Gun.get_overlapping_bodies().is_empty():
+			$Gun.get_overlapping_bodies()[0].hear_noise(5, global_position, 10)
+		$"Gun/Line2D".add_point($Gun.position)
+		$"Gun/Line2D".add_point($Gun/Line2D.to_local($"Gun/Bullet Path".get_collision_point()))
+		$"Gun/Line2D/BulletTime".start()
+		$Gun_Shot_Collision_Noise.global_position = $"Gun/Bullet Path".get_collision_point()
+		if !$Gun_Shot_Collision_Noise.get_overlapping_bodies().is_empty():
+			$Gun_Shot_Collision_Noise.get_overlapping_bodies()[0].hear_noise(4,$Gun_Shot_Collision_Noise.global_position, 4)
 		if collision != null:
-			$"Gun/Line2D".add_point($Gun/Tip.position)
-			$"Gun/Line2D".add_point($Gun/Line2D.to_local(collision.global_position))
-			$"Gun/Line2D/BulletTime".start()
-			
 			if collision.is_in_group("Players"):
 				collision.health -= 1
-				print("HIT PLAYER")
-		else:
-			$"Gun/Line2D".add_point($Gun/Tip.position)
-			$"Gun/Line2D".add_point($"Gun/Bullet Path".target_position)
-		#Stun monster if hits them
+				if collision.health == 0:
+					collision.death()
+			if collision.is_in_group("Jibidoo"):
+				collision.Injury()
 		#Kill dog if hits them
-		#Make sound on wall if hits them
 
 func concat(words : String, number : int):
 	return words + str(number)
+
+func death():
+	hide()
+	Ammo = 0
+	main_script.distrubute_keys(keys)
+	keys = 0
+	global_position = spawnPos
+	await get_tree().create_timer(deathTime).timeout
+	show()
 func _on_main_player_1_is_keyboard():
 	if playerNumber == 1:
 		isPlayerKeyboard = true
@@ -72,6 +93,12 @@ func _on_pick_up_range_area_entered(area: Area2D) -> void:
 		Ammo += 1
 		area.queue_free()
 		print(str(Ammo))
+	if area.is_in_group("Jibidoo"):
+		pass
+		#Kill the player
+	if area.is_in_group("Key"):
+		keys += 1
+		area.queue_free()
 	else:
 		print("MAX AMMO")
 
