@@ -4,7 +4,9 @@ signal player1IsKeyboard
 var isPlayer1Keyboard := true
 
 @export var keyScene:PackedScene = preload("res://key.tscn")
+@export var ammoScene:PackedScene = preload("res://Ammo.tscn")
 
+var game_over : bool
 
 func initialize():
 	for i in range(1,3):
@@ -66,14 +68,19 @@ isRightAxis := false):
 func distrubute_keys(keys : int):
 	var nums := range(0,len($KeySpawnLocations.get_children()))
 	nums.shuffle()
-	for i in nums:
+	var secondary_nums := []
+	var count = 0
+	while count < keys:
+		secondary_nums.append(nums[count])
+		count+=1
+	for i in secondary_nums:
 		var new_key = keyScene.instantiate()
-		add_child(new_key)
+		add_child.call_deferred(new_key)
 		new_key.global_position = $KeySpawnLocations.get_children()[i].global_position
-		
 
 func _physics_process(delta: float) -> void:
-	$Camera2D.position = $Player1.position.lerp($Player2.position, 0.5)
+	if !game_over:
+		$Camera2D.position = $Player1.position.lerp($Player2.position, 0.5)
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -90,3 +97,23 @@ func _ready() -> void:
 		player1IsKeyboard.emit()
 		print("NO CONTROLLER FOUND")
 	initialize()
+
+func _on_bullet_spawn_timer_timeout() -> void:
+	if len($BulletHolder.get_children()) < 9:
+		var spawn_pos : Vector2
+		spawn_pos.x = range(0,4150).pick_random()
+		spawn_pos.y = range(0,3632).pick_random()
+		var new_ammo = ammoScene.instantiate()
+		$BulletHolder.add_child.call_deferred(new_ammo)
+		new_ammo.global_position = spawn_pos
+		$BulletSpawnTimer.start()
+
+func _on_fin_zone_body_entered(body: Node2D) -> void:
+	if body.keys != 3:
+		return
+	if body.playerNumber == 2:
+		$"Result Scene".isWinner2 = true
+	$"Result Scene".show_result()
+	$Camera2D.global_position = Vector2.ZERO
+	$CanvasModulate.color = Color.ANTIQUE_WHITE
+	game_over = true

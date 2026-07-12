@@ -4,9 +4,13 @@ extends CharacterBody2D
 @export var player1isKeyboard : = true	
 @export var playerNumber : int
 
+@export var full_heart : Texture2D
+@export var half_heart : Texture2D
+
 @export var curserSens := 1
 
 @export var health := 2
+@export var player2sprite : Texture
 
 @export var main_script : Node2D
 
@@ -21,20 +25,27 @@ const JUMP_VELOCITY = -400.0
 var isVisibleToMonster : bool
 
 func _ready() -> void:
+	if !playerNumber == 2:
+		$"Player Image".texture = player2sprite
 	spawnPos = global_position
 func _physics_process(delta: float) -> void:
-	$"Heart Beat Area".isVisibleToMonster = isVisibleToMonster
-	var x = Input.get_axis(concat("left",playerNumber), concat("right",playerNumber))
-	var y = Input.get_axis(concat("up",playerNumber), concat("down",playerNumber))
-	var direction := Vector2(x,y)
-	if direction != Vector2.ZERO:
-		velocity = direction.normalized() * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED * delta)
-		velocity.y = move_toward(velocity.y, 0, SPEED * delta)
-		
-	move_and_slide()
-	aim(delta)
+	if health == 2:
+		$Heart.texture = full_heart
+	if health == 1:
+		$Heart.texture = half_heart
+	if !isDead:
+		$"Heart Beat Area".isVisibleToMonster = isVisibleToMonster
+		var x = Input.get_axis(concat("left",playerNumber), concat("right",playerNumber))
+		var y = Input.get_axis(concat("up",playerNumber), concat("down",playerNumber))
+		var direction := Vector2(x,y)
+		if direction != Vector2.ZERO:
+			velocity = direction.normalized() * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED * delta)
+			velocity.y = move_toward(velocity.y, 0, SPEED * delta)
+			
+		move_and_slide()
+		aim(delta)
 func aim(delta : int):
 	var shootButton
 	if isPlayerKeyboard:
@@ -52,6 +63,7 @@ func aim(delta : int):
 	$Gun.look_at($CrossHair.global_position)
 	
 	if shootButton and Ammo != 0:
+		$BulletSound.play()
 		var collision = $"Gun/Bullet Path".get_collider()
 		Ammo -= 1
 		if !$Gun.get_overlapping_bodies().is_empty():
@@ -76,11 +88,14 @@ func concat(words : String, number : int):
 
 func death():
 	hide()
+	global_position = Vector2.ZERO
+	isDead = true
 	Ammo = 0
 	main_script.distrubute_keys(keys)
 	keys = 0
-	global_position = spawnPos
 	await get_tree().create_timer(deathTime).timeout
+	global_position = spawnPos
+	isDead = false
 	show()
 func _on_main_player_1_is_keyboard():
 	if playerNumber == 1:
@@ -89,18 +104,17 @@ func _on_main_player_1_is_keyboard():
 		player1isKeyboard = true
 
 func _on_pick_up_range_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Ammo") and Ammo < 4:
-		Ammo += 1
-		area.queue_free()
-		print(str(Ammo))
-	if area.is_in_group("Jibidoo"):
-		pass
-		#Kill the player
+	if area.is_in_group("Ammo"):
+		if Ammo < 4:
+			Ammo += 1
+			area.queue_free()
+			$"Pick Up Ammo".play()
+		else:
+			$"Full Ammo"
 	if area.is_in_group("Key"):
 		keys += 1
 		area.queue_free()
-	else:
-		print("MAX AMMO")
+		$"Pick Up Ammo".play()
 
 
 func _on_bullet_time_timeout() -> void:

@@ -116,3 +116,8 @@ func check_LOS_between(pos1 : Vector2, pos2 : Vector2):
 
 func _on_injury_timer_timeout() -> void:
 	isInjured = false
+
+
+func _on_hit_box_body_entered(body: Node2D) -> void:
+	body.death()
+	enter_wandering()

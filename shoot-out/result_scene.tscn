@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://byycsqyophdp1"]
+
+[ext_resource type="Script" uid="uid://bomwdqig0c5v4" path="res://result_scene.gd" id="1_1scma"]
+[ext_resource type="Texture2D" uid="uid://tjvuorlojvfj" path="res://art/Stray Assets/Untitled57_20260707083854.png" id="1_qxdv1"]
+[ext_resource type="Texture2D" uid="uid://d1xt4mk3c0g73" path="res://art/Stray Assets/Untitled60_20260708084538.png" id="2_cvpwv"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_told4"]
+
+[node name="Result Scene" type="Node2D" unique_id=1652818057 node_paths=PackedStringArray("winner")]
+script = ExtResource("1_1scma")
+player_2_sprite = ExtResource("2_cvpwv")
+winner = NodePath("Winner")
+
+[node name="Panel" type="Panel" parent="." unique_id=2115321966]
+offset_left = -610.0
+offset_top = -327.0
+offset_right = 611.0
+offset_bottom = 381.0
+
+[node name="Main_text" type="Label" parent="." unique_id=1043296792]
+offset_left = -567.0
+offset_top = -313.00003
+offset_right = -80.0
+offset_bottom = -19.00003
+rotation = -0.0039047701
+theme_override_font_sizes/font_size = 70
+text = "YOU ESCAPED 
+
+YAYYYYY"
+
+[node name="Winner" type="Sprite2D" parent="." unique_id=377388099]
+position = Vector2(443, 122.999985)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_qxdv1")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=888667093]
+energy = 13.45
+texture = SubResource("ImageTexture_told4")

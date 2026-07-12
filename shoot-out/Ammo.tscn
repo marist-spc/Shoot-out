@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bsqooed8k12q0"]
 
-[ext_resource type="Texture2D" uid="uid://dmnbnkwi2dnqj" path="res://art/cf66b5fe-bbc6-4179-a4d4-b1d826dbd5ff-removebg-preview.png" id="1_ji6dm"]
+[ext_resource type="Texture2D" uid="uid://dmnbnkwi2dnqj" path="res://art/Stray Assets/cf66b5fe-bbc6-4179-a4d4-b1d826dbd5ff-removebg-preview.png" id="1_ji6dm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_told4"]
 

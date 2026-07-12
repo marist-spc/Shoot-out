@@ -1,10 +1,14 @@
 [gd_scene format=3 uid="uid://cp18231pu3ato"]
 
 [ext_resource type="Script" uid="uid://bj7ag326e18wq" path="res://jibidoo.gd" id="1_3jb82"]
-[ext_resource type="Texture2D" uid="uid://doylihcrwe5h1" path="res://art/Big Bird.png" id="2_tblx2"]
+[ext_resource type="Texture2D" uid="uid://jd26k3srghr5" path="res://art/Stray Assets/Bird of dOOM AND DESPAOR.png" id="2_3jb82"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2hs0m"]
 light_mode = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ln2ko"]
+radius = 39.0
+height = 133.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_told4"]
 radius = 21.0
@@ -21,9 +25,16 @@ collision_layer = 32
 script = ExtResource("1_3jb82")
 listening_speed = 500.0
 
-[node name="BigBird" type="Sprite2D" parent="." unique_id=5315824]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_tblx2")
+[node name="HitBox" type="Area2D" parent="." unique_id=1357193766]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=608636780]
+position = Vector2(1, 0.5)
+shape = SubResource("CapsuleShape2D_ln2ko")
+
+[node name="BirdOfDOomAndDespaor" type="Sprite2D" parent="." unique_id=1971611053]
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("2_3jb82")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=896110409]
 shape = SubResource("CapsuleShape2D_told4")
@@ -43,5 +54,6 @@ shape = SubResource("CircleShape2D_told4")
 [node name="Injury Timer" type="Timer" parent="." unique_id=1148341629]
 wait_time = 2.0
 
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
 [connection signal="timeout" from="AggroTimer" to="." method="_on_aggro_timer_timeout"]
 [connection signal="timeout" from="Injury Timer" to="." method="_on_injury_timer_timeout"]
