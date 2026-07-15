@@ -6,27 +6,30 @@
 [ext_resource type="PackedScene" uid="uid://cp18231pu3ato" path="res://Jibidoo.tscn" id="3_fos0i"]
 [ext_resource type="PackedScene" uid="uid://nh037g87202o" path="res://key.tscn" id="6_3dxm6"]
 [ext_resource type="PackedScene" uid="uid://byycsqyophdp1" path="res://result_scene.tscn" id="6_lgr22"]
+[ext_resource type="PackedScene" uid="uid://q5soywvoklx8" path="res://ui.tscn" id="7_lgr22"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_told4"]
 radius = 116.275536
 
 [node name="Main" type="Node2D" unique_id=1209284694]
 script = ExtResource("1_uu6xs")
+playerMaxBreath = 4.0
 
 [node name="Fin Zone" type="Area2D" parent="." unique_id=411700324]
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fin Zone" unique_id=262709898]
 position = Vector2(201, 470)
 shape = SubResource("CircleShape2D_told4")
 
-[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1703261647]
-light_mask = 3
-position = Vector2(960, -2520)
-scale = Vector2(5, 5)
-color = Color(0.13561687, 0.13561687, 0.13561687, 1)
-
 [node name="Final Map" parent="." unique_id=197123593 instance=ExtResource("2_cm0pq")]
 position = Vector2(40, -643)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Final Map" unique_id=1703261647]
+light_mask = 3
+position = Vector2(920, -1877)
+scale = Vector2(5, 5)
+color = Color(0.13561687, 0.13561687, 0.13561687, 1)
 
 [node name="Player1" parent="." unique_id=2010301370 node_paths=PackedStringArray("main_script") instance=ExtResource("1_glv2v")]
 position = Vector2(2309, 150)
@@ -42,6 +45,16 @@ main_script = NodePath("..")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1954441880]
 zoom = Vector2(0.2, 0.2)
+
+[node name="UI2" parent="Camera2D" unique_id=566105269 instance=ExtResource("7_lgr22")]
+unique_name_in_owner = true
+offset = Vector2(950, 0)
+transform = Transform2D(1, 0, 0, 1, 950, 0)
+follow_viewport_enabled = false
+
+[node name="UI1" parent="Camera2D" unique_id=214889268 instance=ExtResource("7_lgr22")]
+unique_name_in_owner = true
+follow_viewport_enabled = false
 
 [node name="Jibidoo" parent="." unique_id=105432123 node_paths=PackedStringArray("Player1", "Player2", "WonderNodes") instance=ExtResource("3_fos0i")]
 position = Vector2(521, 3004)
@@ -86,7 +99,7 @@ position = Vector2(1577, 3312)
 position = Vector2(1052, 4116)
 
 [node name="Node2D3" type="Node2D" parent="KeySpawnLocations" unique_id=1366728625]
-position = Vector2(3209, 1447)
+position = Vector2(3382, 1103)
 
 [node name="Node2D2" type="Node2D" parent="KeySpawnLocations" unique_id=1041916290]
 position = Vector2(2458, 1023)

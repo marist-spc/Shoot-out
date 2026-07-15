@@ -1,25 +1,26 @@
-extends Node2D
+extends CanvasLayer
 
 func change_player_name(name : String):
 	$PlayerName.Text = name
 
 func add_key():
-	for key in $CanvasGroup/Keys.get_children():
-		if key.is_node_visible_in_scene_tree:
+	for key in $Keys.get_children():
+		if key.visible:
 			continue
 		key.show()
 		break
 
-func remove_key():
-	var keys = $CanvasGroup/Keys.get_children()
-	keys.reverse()
+func remove_keys():
+	var keys = $Keys.get_children()
 	for key in keys:
-		if key.is_node_visible_in_scene_tree:
-			key.hide()
-			break
+		key.hide()
+		
+func reset_breath():
+	$Breath.value = 100
 func add_breath(num : float):
-	$CanvasGroup/Breath.value += num
+	$Breath.value += num
 func remove_breath(num : float):
-	$CanvasGroup/Breath.value -= num
+	$Breath.value -= num
+	print("remove_breath called" + str(num ))
 func get_breath():
-	return $CanvasGroup/Breath.value
+	return $Breath.value

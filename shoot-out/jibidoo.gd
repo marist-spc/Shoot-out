@@ -56,6 +56,8 @@ func enter_listening_mode():
 	else:
 		enter_wandering()
 func hear_noise(priority : int, pos : Vector2, time_to_stay : float):
+	if check_LOS_between(global_position, pos):
+		show()
 	if priority < curr_priority or isInjured:
 		return
 	movement_speed = chasing_speed
@@ -119,5 +121,6 @@ func _on_injury_timer_timeout() -> void:
 
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
-	body.death()
-	enter_wandering()
+	if check_LOS_between(global_position, body.global_position):
+		body.death()
+	Injury()

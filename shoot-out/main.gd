@@ -5,7 +5,7 @@ var isPlayer1Keyboard := true
 
 @export var keyScene:PackedScene = preload("res://key.tscn")
 @export var ammoScene:PackedScene = preload("res://Ammo.tscn")
-
+@export var playerMaxBreath : float
 var game_over : bool
 
 func initialize():
@@ -108,8 +108,32 @@ func _on_bullet_spawn_timer_timeout() -> void:
 		new_ammo.global_position = spawn_pos
 		$BulletSpawnTimer.start()
 
+func manage_breath(player : int, delta : float, isBreathing : bool):
+	var string = ("Player" + str(player))
+	var Currplayer = get_node(string)
+	var CurrUI = %UI1 if player == 1 else %UI2
+	if !isBreathing:
+		if CurrUI.get_breath() == 0 and !Currplayer.isOutOfBreath:
+			Currplayer.out_of_breath()
+		else:
+			CurrUI.remove_breath((100.0 / playerMaxBreath) * delta)
+	elif CurrUI.get_breath() != 100:
+		CurrUI.add_breath((100.0 / playerMaxBreath) * delta)
+
+func player_death(player : int):
+	var CurrUI = %UI1 if player == 1 else %UI2
+	CurrUI.remove_keys()
+	CurrUI.reset_breath()
+
+func add_key(player : int):
+	var CurrUI = %UI1 if player == 1 else %UI2
+	CurrUI.add_key()
+
+
 func _on_fin_zone_body_entered(body: Node2D) -> void:
-	if body.keys != 3:
+	print("Zone Entered")
+	if body.keys < 3:
+		print("Not Enough Keys")
 		return
 	if body.playerNumber == 2:
 		$"Result Scene".isWinner2 = true

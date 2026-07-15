@@ -8,7 +8,7 @@ func _ready() -> void:
 	$"Heartbeat Timer".start()
 
 func _on_heartbeat_timer_timeout() -> void:
-	if !Input.is_action_pressed("hold_breath"+ str(get_parent().playerNumber)) and !get_parent().isDead:
+	if !Input.is_action_pressed("hold_breath"+ str(get_parent().playerNumber)) and !get_parent().isDead and !get_parent().isOutOfBreath:
 		#make heartbeat sound
 		if isVisibleToMonster:
 			show()

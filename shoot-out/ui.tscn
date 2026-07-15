@@ -3,45 +3,50 @@
 [ext_resource type="Texture2D" uid="uid://y0rq67fkbg78" path="res://art/Stray Assets/Untitled68_20260710145040.png" id="1_fyqef"]
 [ext_resource type="Script" uid="uid://dx3cauxih6j8v" path="res://ui.gd" id="1_m6e0p"]
 
-[node name="UI" type="Node2D" unique_id=566105269]
+[node name="UI" type="CanvasLayer" unique_id=1954132534]
+follow_viewport_enabled = true
 script = ExtResource("1_m6e0p")
 
-[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=1987747084]
+[node name="Keys" type="Node2D" parent="." unique_id=109991136]
+position = Vector2(0, -20)
 
-[node name="Keys" type="Node2D" parent="CanvasGroup" unique_id=640844086]
-position = Vector2(-9, -23)
-
-[node name="Key1" type="Sprite2D" parent="CanvasGroup/Keys" unique_id=1952226124]
+[node name="Key1" type="Sprite2D" parent="Keys" unique_id=2059624537]
+visible = false
 position = Vector2(28, 108)
 scale = Vector2(0.025, 0.025)
 texture = ExtResource("1_fyqef")
 
-[node name="Key2" type="Sprite2D" parent="CanvasGroup/Keys" unique_id=738579265]
+[node name="Key2" type="Sprite2D" parent="Keys" unique_id=1651363278]
+visible = false
 position = Vector2(59.54999, 108.34999)
 scale = Vector2(0.025, 0.025)
 texture = ExtResource("1_fyqef")
 
-[node name="Key3" type="Sprite2D" parent="CanvasGroup/Keys" unique_id=1037495280]
+[node name="Key3" type="Sprite2D" parent="Keys" unique_id=1432387469]
+visible = false
 position = Vector2(89.549995, 109.35)
 scale = Vector2(0.025, 0.025)
 texture = ExtResource("1_fyqef")
 
-[node name="Key4" type="Sprite2D" parent="CanvasGroup/Keys" unique_id=1442792137]
+[node name="Key4" type="Sprite2D" parent="Keys" unique_id=735680177]
+visible = false
 position = Vector2(120.549995, 109.35)
 scale = Vector2(0.025, 0.025)
 texture = ExtResource("1_fyqef")
 
-[node name="PlayerName" type="Label" parent="CanvasGroup" unique_id=159268153]
+[node name="PlayerName" type="Label" parent="." unique_id=8820349]
 offset_top = 3.0
 offset_right = 231.0
 offset_bottom = 86.0
 theme_override_font_sizes/font_size = 40
 text = "Player 1"
 
-[node name="Breath" type="HSlider" parent="CanvasGroup" unique_id=448089896]
+[node name="Breath" type="HSlider" parent="." unique_id=1992914076]
 offset_left = 4.0
 offset_top = 125.0
 offset_right = 154.0
 offset_bottom = 141.0
-rounded = true
+step = 0.0
+value = 100.0
+editable = false
 scrollable = false

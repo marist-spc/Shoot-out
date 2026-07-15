@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://credofc5aggdy"
+path="res://.godot/imported/Catching Breath.wav-ed94e65a2c19ec240922cfeb3965ebc3.sample"
+
+[deps]
+
+source_file="res://Audio/Catching Breath.wav"
+dest_files=["res://.godot/imported/Catching Breath.wav-ed94e65a2c19ec240922cfeb3965ebc3.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
