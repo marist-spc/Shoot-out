@@ -29,7 +29,7 @@ position = Vector2(40, -643)
 light_mask = 3
 position = Vector2(920, -1877)
 scale = Vector2(5, 5)
-color = Color(0.13561687, 0.13561687, 0.13561687, 1)
+color = Color(0, 0, 0, 1)
 
 [node name="Player1" parent="." unique_id=2010301370 node_paths=PackedStringArray("main_script") instance=ExtResource("1_glv2v")]
 position = Vector2(2309, 150)
@@ -59,7 +59,9 @@ follow_viewport_enabled = false
 [node name="Jibidoo" parent="." unique_id=105432123 node_paths=PackedStringArray("Player1", "Player2", "WonderNodes") instance=ExtResource("3_fos0i")]
 position = Vector2(521, 3004)
 scale = Vector2(4, 4)
-listening_speed = 100.0
+listening_speed = 50.0
+wandering_speed = 100.0
+chasing_speed = 300.0
 retreat_speed = 700.0
 Player1 = NodePath("../Player1")
 Player2 = NodePath("../Player2")

@@ -2,10 +2,32 @@
 
 [ext_resource type="Texture2D" uid="uid://y0rq67fkbg78" path="res://art/Stray Assets/Untitled68_20260710145040.png" id="1_fyqef"]
 [ext_resource type="Script" uid="uid://dx3cauxih6j8v" path="res://ui.gd" id="1_m6e0p"]
+[ext_resource type="Texture2D" uid="uid://dli6joq7ndfpc" path="res://Ammo Png.png" id="2_27fn8"]
 
 [node name="UI" type="CanvasLayer" unique_id=1954132534]
 follow_viewport_enabled = true
 script = ExtResource("1_m6e0p")
+
+[node name="Ammo" type="Node2D" parent="." unique_id=1248058901]
+position = Vector2(0, -40)
+
+[node name="AmmoPng" type="Sprite2D" parent="Ammo" unique_id=729484607]
+visible = false
+position = Vector2(29, 225)
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("2_27fn8")
+
+[node name="AmmoPng2" type="Sprite2D" parent="Ammo" unique_id=1819984446]
+visible = false
+position = Vector2(80, 225)
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("2_27fn8")
+
+[node name="AmmoPng3" type="Sprite2D" parent="Ammo" unique_id=605304262]
+visible = false
+position = Vector2(135.99998, 225.00002)
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("2_27fn8")
 
 [node name="Keys" type="Node2D" parent="." unique_id=109991136]
 position = Vector2(0, -20)

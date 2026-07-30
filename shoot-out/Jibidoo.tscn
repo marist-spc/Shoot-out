@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://bj7ag326e18wq" path="res://jibidoo.gd" id="1_3jb82"]
 [ext_resource type="Texture2D" uid="uid://jd26k3srghr5" path="res://art/Stray Assets/Bird of dOOM AND DESPAOR.png" id="2_3jb82"]
+[ext_resource type="Texture2D" uid="uid://dgytejcolpmq1" path="res://light.png" id="2_tblx2"]
+[ext_resource type="AudioStream" uid="uid://chivvhj7pgutx" path="res://Audio/shoebill-sound.mp3" id="4_iqwf8"]
+[ext_resource type="AudioStream" uid="uid://clh5qwru5c356" path="res://Audio/dragon-studio-godzilla-growl-368671.mp3" id="4_m3g7v"]
+[ext_resource type="AudioStream" uid="uid://bcxvr81t84khn" path="res://Audio/dragon-studio-animalistic-grunt-463204.mp3" id="6_idj0y"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2hs0m"]
 light_mode = 2
@@ -24,6 +28,11 @@ material = SubResource("CanvasItemMaterial_2hs0m")
 collision_layer = 32
 script = ExtResource("1_3jb82")
 listening_speed = 500.0
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1027265648]
+color = Color(0.67751914, 0.22521791, 0.1247854, 1)
+energy = 0.04
+texture = ExtResource("2_tblx2")
 
 [node name="HitBox" type="Area2D" parent="." unique_id=1357193766]
 collision_layer = 16
@@ -53,6 +62,15 @@ shape = SubResource("CircleShape2D_told4")
 
 [node name="Injury Timer" type="Timer" parent="." unique_id=1148341629]
 wait_time = 2.0
+
+[node name="Listening Noise" type="AudioStreamPlayer2D" parent="." unique_id=1415774188]
+stream = ExtResource("4_m3g7v")
+
+[node name="Aggro Noise" type="AudioStreamPlayer2D" parent="." unique_id=1186353998]
+stream = ExtResource("4_iqwf8")
+
+[node name="Unagrro Noise" type="AudioStreamPlayer2D" parent="." unique_id=236757956]
+stream = ExtResource("6_idj0y")
 
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
 [connection signal="timeout" from="AggroTimer" to="." method="_on_aggro_timer_timeout"]

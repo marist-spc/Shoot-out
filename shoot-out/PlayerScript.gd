@@ -45,9 +45,9 @@ func _physics_process(delta: float) -> void:
 		
 		var CurrSpeed = SPEED
 		if Input.is_action_pressed("hold_breath" + str(playerNumber)) and !isOutOfBreath:
-			CurrSpeed /= 4
-		elif isOutOfBreath:
 			CurrSpeed /= 2
+		elif isOutOfBreath:
+			CurrSpeed /= 4
 		if direction != Vector2.ZERO:
 			velocity = direction.normalized() * CurrSpeed
 		else:
@@ -75,6 +75,7 @@ func aim(delta : float):
 	
 	if shootButton and Ammo != 0:
 		$BulletSound.play()
+		main_script.remove_ammo(playerNumber)
 		var collision = $"Gun/Bullet Path".get_collider()
 		Ammo -= 1
 		if !$Gun.get_overlapping_bodies().is_empty():
@@ -91,7 +92,6 @@ func aim(delta : float):
 				collision.health -= 1
 			if collision.is_in_group("Jibidoo"):
 				collision.Injury()
-		#Kill dog if hits them
 
 func breath(delta : float):
 	if Input.is_action_pressed("hold_breath" + str(playerNumber)) and !isOutOfBreath:
@@ -132,12 +132,19 @@ func _on_main_player_1_is_keyboard():
 func _on_pick_up_range_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Ammo"):
 		if Ammo < 4:
+			$Gun_Shot_Collision_Noise.global_position = area.global_position
+			if !$Gun_Shot_Collision_Noise.get_overlapping_bodies().is_empty():
+				$Gun_Shot_Collision_Noise.get_overlapping_bodies()[0].hear_noise(3,area.global_position, 2)
+			main_script.add_ammo(playerNumber)
 			Ammo += 1
 			area.queue_free()
 			$"Pick Up Ammo".play()
 		else:
 			$"Full Ammo"
 	if area.is_in_group("Key"):
+		$Gun_Shot_Collision_Noise.global_position = area.global_position
+		if !$Gun_Shot_Collision_Noise.get_overlapping_bodies().is_empty():
+			$Gun_Shot_Collision_Noise.get_overlapping_bodies()[0].hear_noise(3,area.global_position, 3)
 		main_script.add_key(playerNumber)
 		keys += 1
 		area.queue_free()

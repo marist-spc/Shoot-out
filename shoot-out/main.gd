@@ -129,6 +129,13 @@ func add_key(player : int):
 	var CurrUI = %UI1 if player == 1 else %UI2
 	CurrUI.add_key()
 
+func add_ammo(player : int):
+	var CurrUI = %UI1 if player == 1 else %UI2
+	CurrUI.add_ammo()
+	
+func remove_ammo(player : int):
+	var CurrUI = %UI1 if player == 1 else %UI2
+	CurrUI.remove_ammo()
 
 func _on_fin_zone_body_entered(body: Node2D) -> void:
 	print("Zone Entered")
@@ -139,5 +146,5 @@ func _on_fin_zone_body_entered(body: Node2D) -> void:
 		$"Result Scene".isWinner2 = true
 	$"Result Scene".show_result()
 	$Camera2D.global_position = Vector2.ZERO
-	$CanvasModulate.color = Color.ANTIQUE_WHITE
+	$"Final Map/CanvasModulate".color = Color.ANTIQUE_WHITE
 	game_over = true

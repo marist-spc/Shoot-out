@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://m1v0fyrh1jdk" path="res://art/Stray Assets/Untitled57_20260707084104.png" id="4_hqtel"]
 [ext_resource type="Texture2D" uid="uid://dgytejcolpmq1" path="res://light.png" id="6_2hs0m"]
 [ext_resource type="Script" uid="uid://cwtwiy1ph7gmo" path="res://heart_beat_area.gd" id="7_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://cpfskhhx681sv" path="res://tourch_texture_4_copy - Edited.png" id="7_q13i1"]
 [ext_resource type="AudioStream" uid="uid://7orhxv71vnh0" path="res://art/Stray Assets/Gun Shot- Shoot  (1).wav" id="8_dw050"]
 [ext_resource type="AudioStream" uid="uid://b5eg6sp2rx55d" path="res://Audio/Full Gun- Shoot Out .wav" id="8_n7ghd"]
 [ext_resource type="AudioStream" uid="uid://kp52o2pd71lu" path="res://Audio/Pick Up Ammo- Shoot Out .wav" id="9_nvl01"]
@@ -50,25 +51,10 @@ full_heart = ExtResource("12_ivps1")
 half_heart = ExtResource("3_urp6f")
 player2sprite = ExtResource("2_1jxqw")
 
-[node name="PointLight2D2" type="PointLight2D" parent="." unique_id=1666431808]
-show_behind_parent = true
-blend_mode = 2
-range_item_cull_mask = 2
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=285979704]
+energy = 0.1
 shadow_enabled = true
-shadow_filter_smooth = 64.0
-shadow_item_cull_mask = 3
 texture = ExtResource("6_2hs0m")
-texture_scale = 3.71
-height = 169.0
-
-[node name="PointLight2D" type="PointLight2D" parent="." unique_id=607958957]
-show_behind_parent = true
-shadow_enabled = true
-shadow_color = Color(0, 0, 0, 1)
-shadow_filter_smooth = 64.0
-texture = ExtResource("6_2hs0m")
-texture_scale = 3.71
-height = 169.0
 
 [node name="Player Image" type="Sprite2D" parent="." unique_id=1245816332]
 position = Vector2(0, -0.9999999)
@@ -93,6 +79,20 @@ shape = SubResource("CircleShape2D_told4")
 position = Vector2(-8.065901, -8.999729)
 rotation = 1.5625587
 collision_mask = 32
+
+[node name="PointLight2D" type="PointLight2D" parent="Gun" unique_id=607958957]
+show_behind_parent = true
+position = Vector2(35.247288, 10.558144)
+rotation = 1.5707964
+scale = Vector2(0.3111534, 0.406824)
+energy = 1.9
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+shadow_filter_smooth = 64.0
+texture = ExtResource("7_q13i1")
+offset = Vector2(-28.502785, -1888.9973)
+texture_scale = 3.71
+height = 169.0
 
 [node name="Gunsprite" type="Sprite2D" parent="Gun" unique_id=1149403542]
 position = Vector2(25.627535, 33.24668)
@@ -169,6 +169,7 @@ stream = ExtResource("8_n7ghd")
 
 [node name="Pick Up Ammo" type="AudioStreamPlayer" parent="." unique_id=970826188]
 stream = ExtResource("9_nvl01")
+volume_db = -2.885
 
 [node name="Catching Breath Sound" type="AudioStreamPlayer" parent="." unique_id=565275381]
 stream = ExtResource("13_bwjto")

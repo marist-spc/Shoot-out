@@ -38,6 +38,7 @@ func set_movement_target(movement_target: Vector2):
 	navigation_agent.target_position = movement_target
 
 func enter_wandering():
+	$"Unagrro Noise"
 	if !isInjured:
 		movement_speed = wandering_speed
 	curr_priority = 0
@@ -46,6 +47,7 @@ func enter_wandering():
 	target_to_chase = POIs.pick_random()
 	
 func enter_listening_mode():
+	$"Listening Noise".play()
 	var players : Array = $"Player Detector".get_overlapping_bodies()
 	if !players.is_empty():      
 		movement_speed = listening_speed
@@ -60,6 +62,7 @@ func hear_noise(priority : int, pos : Vector2, time_to_stay : float):
 		show()
 	if priority < curr_priority or isInjured:
 		return
+	$"Aggro Noise".play()
 	movement_speed = chasing_speed
 	target_to_chase = null
 	isAggro = true
@@ -81,7 +84,8 @@ func _physics_process(delta):
 
 	velocity = current_agent_global_position.direction_to(next_path_global_position) * movement_speed
 	move_and_slide()
-	hide()
+	if !isAggro:
+		hide()
 	if check_LOS_between(Player1.global_position, global_position):
 		Player1.isVisibleToMonster = true
 		show()
