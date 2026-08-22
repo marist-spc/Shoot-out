@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://credofc5aggdy"
-path="res://.godot/imported/Catching Breath.wav-ed94e65a2c19ec240922cfeb3965ebc3.sample"
+path="res://.godot/imported/Catching Breath.wav-c7b0af9a7acfbd1e6d9174fba1713f37.sample"
 
 [deps]
 
-source_file="res://Audio/Catching Breath.wav"
-dest_files=["res://.godot/imported/Catching Breath.wav-ed94e65a2c19ec240922cfeb3965ebc3.sample"]
+source_file="res://Audio/Player Sounds/Catching Breath.wav"
+dest_files=["res://.godot/imported/Catching Breath.wav-c7b0af9a7acfbd1e6d9174fba1713f37.sample"]
 
 [params]
 

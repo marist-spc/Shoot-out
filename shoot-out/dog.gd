@@ -1,25 +1,23 @@
 extends CharacterBody2D
-@export var movement_speed: float = 200.0
+var movement_speed : float
 @export var listening_speed : float = 100.0
 @export var wandering_speed : float = 200.0
 @export var chasing_speed : float = 500.0
-@export var retreat_speed := 50.0
 
+@export var bark_sprite : Texture
+@export var default_sprite : Texture
+@export var Jibidoo : Node2D
 
-@export var Player1 : Node2D
-@export var Player2 : Node2D
 @export var WonderNodes : Node2D
 var target_to_chase : Node2D
 
-var isInjured
+var isInjured := false
 
-var curr_priority
 var isAggro : bool
 
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 
 func _ready():
-	hide()
 	# These values need to be adjusted for the actor's speed
 	# and the navigation layout.
 	navigation_agent.path_desired_distance = 4.0
@@ -32,7 +30,7 @@ func actor_setup():
 	# Wait for the first physics frame so the NavigationServer can sync.
 	await get_tree().physics_frame
 	
-	enter_listening_mode()
+	enter_wandering()
 
 func set_movement_target(movement_target: Vector2):
 	navigation_agent.target_position = movement_target
@@ -40,42 +38,14 @@ func set_movement_target(movement_target: Vector2):
 func enter_wandering():
 	if !isInjured:
 		movement_speed = wandering_speed
-	curr_priority = 0
 	isAggro = false
 	var POIs = WonderNodes.get_children()
 	target_to_chase = POIs.pick_random()
-	
-func enter_listening_mode():
-	$"Listening Noise".play()
-	var players : Array = $"Player Detector".get_overlapping_bodies()
-	if !players.is_empty():      
-		movement_speed = listening_speed
-		if len(players) > 0:
-			players.sort_custom(func(a,b): return a if a.global_position.distance_to(global_position) < b.global_position.distance_to(global_position) else b)
-		target_to_chase = players[0]
-		curr_priority = 0
-	else:
-		enter_wandering()
-func hear_noise(priority : int, pos : Vector2, time_to_stay : float):
-	if check_LOS_between(global_position, pos):
-		show()
-	if priority < curr_priority or isInjured:
-		return
-	$"Aggro Noise".play()
-	movement_speed = chasing_speed
-	target_to_chase = null
-	isAggro = true
-	curr_priority = priority
-	set_movement_target(pos)
-	$AggroTimer.wait_time = time_to_stay
-	$AggroTimer.start()
 
 func _physics_process(delta):
 	if navigation_agent.is_navigation_finished():
-		if !isAggro:
+		if !isAggro and !isInjured:
 			enter_wandering()
-		else:
-			enter_listening_mode()
 	if target_to_chase != null:
 		set_movement_target(target_to_chase.global_position)
 	var current_agent_global_position: Vector2 = global_position
@@ -84,28 +54,23 @@ func _physics_process(delta):
 	velocity = current_agent_global_position.direction_to(next_path_global_position) * movement_speed
 	move_and_slide()
 	if !isAggro:
-		hide()
-	if check_LOS_between(Player1.global_position, global_position):
-		Player1.isVisibleToMonster = true
-		show()
+		pass
+		##hide()
 	else:
-		Player1.isVisibleToMonster = false
-	if check_LOS_between(Player2.global_position, global_position):
-		Player2.isVisibleToMonster = true
-		show()
-	else:
-		Player2.isVisibleToMonster = false
+		$Bediboo.texture = bark_sprite
+		$Bark.play()
+		if check_LOS_between(global_position,target_to_chase.global_position):
+			Jibidoo.hear_noise(6, target_to_chase.global_position, 5)
+		else:
+			isAggro = false
+		await get_tree().create_timer(0.45).timeout
+		$Bediboo.texture = default_sprite
+	
 
 func Injury():
-	$"Injured Noise".play()
+	$"Injury Sound".play()
 	isInjured = true
-	movement_speed = retreat_speed
-	enter_wandering()
 	$"Injury Timer".start()
-
-func _on_aggro_timer_timeout() -> void:
-	$"Unaggro Noise".play()
-	enter_wandering()
 
 func check_LOS_between(pos1 : Vector2, pos2 : Vector2):
 	var count = 0
@@ -132,7 +97,15 @@ func _on_injury_timer_timeout() -> void:
 	isInjured = false
 
 
-func _on_hit_box_body_entered(body: Node2D) -> void:
-	if check_LOS_between(global_position, body.global_position):
-		body.death()
-	Injury()
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if check_LOS_between(global_position,body.global_position) and !isInjured:
+		isAggro = true
+		target_to_chase = body
+		movement_speed = chasing_speed
+	else:
+		movement_speed = listening_speed
+		target_to_chase = body
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	enter_wandering()

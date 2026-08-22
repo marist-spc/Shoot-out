@@ -10,14 +10,14 @@
 [ext_resource type="Script" uid="uid://cwtwiy1ph7gmo" path="res://heart_beat_area.gd" id="7_1jxqw"]
 [ext_resource type="Texture2D" uid="uid://cpfskhhx681sv" path="res://tourch_texture_4_copy - Edited.png" id="7_q13i1"]
 [ext_resource type="AudioStream" uid="uid://7orhxv71vnh0" path="res://art/Stray Assets/Gun Shot- Shoot  (1).wav" id="8_dw050"]
-[ext_resource type="AudioStream" uid="uid://b5eg6sp2rx55d" path="res://Audio/Full Gun- Shoot Out .wav" id="8_n7ghd"]
-[ext_resource type="AudioStream" uid="uid://kp52o2pd71lu" path="res://Audio/Pick Up Ammo- Shoot Out .wav" id="9_nvl01"]
-[ext_resource type="AudioStream" uid="uid://ch6nd4sdmo4ns" path="res://Audio/heartbeat.wav" id="10_nvl01"]
+[ext_resource type="AudioStream" uid="uid://b5eg6sp2rx55d" path="res://Audio/Player Sounds/Full Gun- Shoot Out .wav" id="8_n7ghd"]
+[ext_resource type="AudioStream" uid="uid://kp52o2pd71lu" path="res://Audio/Player Sounds/Pick Up Ammo- Shoot Out .wav" id="9_nvl01"]
+[ext_resource type="AudioStream" uid="uid://ch6nd4sdmo4ns" path="res://Audio/Player Sounds/heartbeat.wav" id="10_nvl01"]
 [ext_resource type="Texture2D" uid="uid://dagq0p3s30x4d" path="res://art/Hearts/Full_Heart-removebg-preview.png" id="12_ivps1"]
-[ext_resource type="AudioStream" uid="uid://credofc5aggdy" path="res://Audio/Catching Breath.wav" id="13_bwjto"]
+[ext_resource type="AudioStream" uid="uid://credofc5aggdy" path="res://Audio/Player Sounds/Catching Breath.wav" id="13_bwjto"]
 [ext_resource type="AudioStream" uid="uid://b1bod2h4hek2g" path="res://Audio/u_r7cny11q7r-man-death-scream-186763.mp3" id="15_606se"]
 [ext_resource type="AudioStream" uid="uid://bev1cd822yoej" path="res://Audio/saboteurcomics-superfast-crunch-405118.mp3" id="15_op7ga"]
-[ext_resource type="AudioStream" uid="uid://dom57ch7f2coc" path="res://Audio/poorartistt-whale-sound-no-copyright-346774.mp3" id="16_q13i1"]
+[ext_resource type="AudioStream" uid="uid://dom57ch7f2coc" path="res://Audio/Player Sounds/poorartistt-whale-sound-no-copyright-346774.mp3" id="16_q13i1"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2hs0m"]
 light_mode = 2
@@ -28,6 +28,11 @@ height = 39.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_told4"]
 radius = 22.022715
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uyr1m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dojnb"]
+size = Vector2(26.695967, 7.274967)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wvlus"]
 radius = 300.3393
@@ -44,12 +49,17 @@ radius = 245.35594
 light_mask = 2
 material = SubResource("CanvasItemMaterial_2hs0m")
 scale = Vector2(3, 3)
-collision_mask = 54
+collision_mask = 62
 motion_mode = 1
 script = ExtResource("1_4flbx")
 full_heart = ExtResource("12_ivps1")
 half_heart = ExtResource("3_urp6f")
 player2sprite = ExtResource("2_1jxqw")
+
+[node name="PlayedRigidBody" type="CollisionShape2D" parent="." unique_id=889090620]
+position = Vector2(0, -1)
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_hqtel")
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=285979704]
 energy = 0.1
@@ -63,13 +73,9 @@ texture = ExtResource("2_sweqy")
 
 [node name="CrossHair" type="Node2D" parent="." unique_id=872828095]
 
-[node name="HitBox" type="CollisionShape2D" parent="." unique_id=889090620]
-position = Vector2(0, -1)
-scale = Vector2(2, 2)
-shape = SubResource("CapsuleShape2D_hqtel")
-
 [node name="PickUpRange" type="Area2D" parent="." unique_id=1966258144]
 scale = Vector2(3, 3)
+collision_layer = 64
 collision_mask = 48
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="PickUpRange" unique_id=1388820053]
@@ -80,15 +86,27 @@ position = Vector2(-8.065901, -8.999729)
 rotation = 1.5625587
 collision_mask = 32
 
+[node name="StaticBody2D" type="StaticBody2D" parent="Gun" unique_id=1855015813]
+position = Vector2(56.54145, 15.400387)
+collision_layer = 128
+collision_mask = 2
+physics_material_override = SubResource("PhysicsMaterial_uyr1m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gun/StaticBody2D" unique_id=1658251174]
+shape = SubResource("RectangleShape2D_dojnb")
+one_way_collision_direction = Vector2(0.7071068, 0.7071068)
+
 [node name="PointLight2D" type="PointLight2D" parent="Gun" unique_id=607958957]
 show_behind_parent = true
 position = Vector2(35.247288, 10.558144)
 rotation = 1.5707964
 scale = Vector2(0.3111534, 0.406824)
-energy = 1.9
+color = Color(1, 0.8387022, 0.44557363, 1)
+energy = 3.0
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
-shadow_filter_smooth = 64.0
+shadow_filter = 1
+shadow_filter_smooth = 9.5
 texture = ExtResource("7_q13i1")
 offset = Vector2(-28.502785, -1888.9973)
 texture_scale = 3.71
@@ -112,11 +130,13 @@ end_cap_mode = 2
 
 [node name="BulletTime" type="Timer" parent="Gun/Line2D" unique_id=210783121]
 wait_time = 0.1
+one_shot = true
 
 [node name="Bullet Path" type="RayCast2D" parent="Gun" unique_id=1085662565]
-position = Vector2(0, 1)
+position = Vector2(69.53003, 16.840763)
 target_position = Vector2(817, -1)
 collision_mask = 35
+collide_with_areas = true
 
 [node name="ArmSprite" type="Sprite2D" parent="Gun" unique_id=798326342]
 position = Vector2(-80.53628, 24.2715)
@@ -133,6 +153,7 @@ position = Vector2(52.627537, 13.246686)
 shape = SubResource("CircleShape2D_wvlus")
 
 [node name="Heart Beat Area" type="Area2D" parent="." unique_id=275925857]
+collision_layer = 64
 collision_mask = 32
 script = ExtResource("7_1jxqw")
 
@@ -154,6 +175,7 @@ shape = SubResource("CircleShape2D_81axj")
 [node name="Gun_Shot_Collision_Noise" type="Area2D" parent="." unique_id=561607744]
 visible = false
 position = Vector2(701, -606.6666)
+collision_layer = 64
 collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gun_Shot_Collision_Noise" unique_id=1645486602]
@@ -176,6 +198,7 @@ stream = ExtResource("13_bwjto")
 
 [node name="OutOfBreathTimer" type="Timer" parent="." unique_id=1593953087]
 wait_time = 4.0
+one_shot = true
 
 [node name="BulletSound" type="AudioStreamPlayer" parent="." unique_id=1532718378]
 stream = ExtResource("8_dw050")

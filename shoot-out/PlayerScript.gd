@@ -78,20 +78,20 @@ func aim(delta : float):
 		main_script.remove_ammo(playerNumber)
 		var collision = $"Gun/Bullet Path".get_collider()
 		Ammo -= 1
-		if !$Gun.get_overlapping_bodies().is_empty():
-			$Gun.get_overlapping_bodies()[0].hear_noise(5, global_position, 10)
-		$"Gun/Line2D".add_point($Gun.position)
+		if !$Gun.get_overlapping_bodies().is_empty(): #if Jibidoo is in range of gunshot
+			$Gun.get_overlapping_bodies()[0].hear_noise(5, global_position, 10) #let them hear gun
+		$"Gun/Line2D".add_point($Gun.position) #add position between gun and shot point for bullet tracer
 		$"Gun/Line2D".add_point($Gun/Line2D.to_local($"Gun/Bullet Path".get_collision_point()))
 		$"Gun/Line2D/BulletTime".start()
-		$Gun_Shot_Collision_Noise.show()
+		$Gun_Shot_Collision_Noise.show() #This makes the light that flashes when a bullet is shot
 		$Gun_Shot_Collision_Noise.global_position = $"Gun/Bullet Path".get_collision_point()
-		if !$Gun_Shot_Collision_Noise.get_overlapping_bodies().is_empty():
+		if !$Gun_Shot_Collision_Noise.get_overlapping_bodies().is_empty(): #If jibidoo is in range of landed bullet
 			$Gun_Shot_Collision_Noise.get_overlapping_bodies()[0].hear_noise(4,$Gun_Shot_Collision_Noise.global_position, 4)
-		if collision != null:
+		if collision != null: #Collision is the first body that the ray bullet touches
 			if collision.is_in_group("Players"):
 				collision.health -= 1
 			if collision.is_in_group("Jibidoo"):
-				collision.Injury()
+				collision.get_parent().Injury()
 
 func breath(delta : float):
 	if Input.is_action_pressed("hold_breath" + str(playerNumber)) and !isOutOfBreath:

@@ -1,10 +1,54 @@
 [gd_scene format=3 uid="uid://caprmnhd0vv55"]
 
+[ext_resource type="Script" uid="uid://bknamp5l2d8cr" path="res://dog.gd" id="1_c5eso"]
+[ext_resource type="Texture2D" uid="uid://ch0dg5dnywv54" path="res://art/Bediboo Bark.png" id="2_jurjn"]
+[ext_resource type="Texture2D" uid="uid://bhcbpjm6t5fw6" path="res://art/Bediboo.png" id="2_kb3ao"]
+[ext_resource type="AudioStream" uid="uid://ce6t38ull2v80" path="res://Audio/Dog Bark (Edited) Shoot- Out.wav" id="3_ptela"]
+[ext_resource type="AudioStream" uid="uid://bf0y8qif31qqy" path="res://Audio/scottishperson-sound-effect-dog-crying-05-367321.mp3" id="4_ngebd"]
+[ext_resource type="Texture2D" uid="uid://dgytejcolpmq1" path="res://light.png" id="6_6vfhn"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_told4"]
 
-[node name="Dog" type="CharacterBody2D" unique_id=1022778373]
+[sub_resource type="CircleShape2D" id="CircleShape2D_dojnb"]
+radius = 767.9909
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1866190591]
+[node name="Dog" type="CharacterBody2D" unique_id=1022778373]
+collision_layer = 256
+script = ExtResource("1_c5eso")
+bark_sprite = ExtResource("2_jurjn")
+default_sprite = ExtResource("2_kb3ao")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1316482826]
+navigation_layers = 2
+avoidance_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=73360392]
 shape = SubResource("RectangleShape2D_told4")
+
+[node name="Bediboo" type="Sprite2D" parent="." unique_id=1030700466]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_kb3ao")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=365367449]
+collision_layer = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=683431862]
+shape = SubResource("CircleShape2D_dojnb")
+
+[node name="Injury Timer" type="Timer" parent="." unique_id=1807312611]
+wait_time = 7.5
+one_shot = true
+
+[node name="Bark" type="AudioStreamPlayer2D" parent="." unique_id=1628093676]
+stream = ExtResource("3_ptela")
+
+[node name="Injury Sound" type="AudioStreamPlayer2D" parent="." unique_id=1639702332]
+stream = ExtResource("4_ngebd")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=570289651]
+energy = 2.65
+shadow_enabled = true
+texture = ExtResource("6_6vfhn")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

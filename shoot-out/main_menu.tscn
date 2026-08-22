@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://djpoji0x6nvcs"]
+
+[ext_resource type="Texture2D" uid="uid://c6jck7vans7hj" path="res://background png.jpg" id="1_fu7sn"]
+[ext_resource type="Texture2D" uid="uid://s1bnq8d7dflm" path="res://art/drive-download-20260711T033239Z-2-001/Spooky House.png" id="2_glbon"]
+[ext_resource type="Texture2D" uid="uid://dd36vs5nut2gk" path="res://art/drive-download-20260711T033239Z-2-001/Untitled60_20260708084755.png" id="2_jix8l"]
+[ext_resource type="Texture2D" uid="uid://cx5d06rj6qfkx" path="res://art/drive-download-20260711T033239Z-2-001/Untitled57_20260707133551.png" id="3_glbon"]
+
+[node name="MainMenu" type="Node2D" unique_id=1570258819]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=24231960]
+
+[node name="BackgroundPng" type="Sprite2D" parent="." unique_id=1960517547]
+modulate = Color(0.16924527, 0.1692453, 0.16924527, 1)
+position = Vector2(5, 0.5)
+scale = Vector2(1.9084967, 1.5759804)
+texture = ExtResource("1_fu7sn")
+metadata/_edit_lock_ = true
+
+[node name="SpookyHouse" type="Sprite2D" parent="." unique_id=2022470638]
+position = Vector2(-229.00002, -2.3841858e-07)
+scale = Vector2(1.6435293, 1.5081967)
+texture = ExtResource("2_glbon")
+metadata/_edit_lock_ = true
+
+[node name="Untitled6020260708084755" type="Sprite2D" parent="." unique_id=10577335]
+position = Vector2(-345, 46)
+scale = Vector2(0.03363097, 0.03065016)
+texture = ExtResource("2_jix8l")
+
+[node name="Untitled5720260707133551" type="Sprite2D" parent="." unique_id=333565554]
+position = Vector2(-328, 189.00002)
+scale = Vector2(0.08958335, 0.10030959)
+texture = ExtResource("3_glbon")
+
+[node name="Label" type="Label" parent="." unique_id=1512073680]
+offset_left = 209.0
+offset_top = -305.0
+offset_right = 501.0
+offset_bottom = -114.0
+pivot_offset = Vector2(148, 96)
+theme_override_font_sizes/font_size = 50
+text = "SHOOT OUT"
+horizontal_alignment = 1
+vertical_alignment = 1

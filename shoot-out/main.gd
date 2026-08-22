@@ -9,6 +9,7 @@ var isPlayer1Keyboard := true
 var game_over : bool
 
 func initialize():
+	Engine.max_fps = 60
 	for i in range(1,3):
 		if isPlayer1Keyboard and i == 1:
 			create_input("up",i, KEY_W)

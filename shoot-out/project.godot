@@ -27,6 +27,10 @@ folder_colors={
 "res://art/Hearts/": "red"
 }
 
+[global_group]
+
+Jibidoo=""
+
 [input]
 
 mouse_click={
@@ -53,6 +57,9 @@ shoot2={
 2d_physics/layer_4="Blocking Items"
 2d_physics/layer_5="Items"
 2d_physics/layer_6="Jibidoo"
+2d_physics/layer_7="Areas-Skip-Raycasting"
+2d_physics/layer_8="Gun"
+2d_physics/layer_9="Dog"
 
 [physics]
 

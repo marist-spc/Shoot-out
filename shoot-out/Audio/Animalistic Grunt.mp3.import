@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bcxvr81t84khn"
+path="res://.godot/imported/Animalistic Grunt.mp3-c87cd52b2c2b4297dcd2fa1b02a7615c.mp3str"
+
+[deps]
+
+source_file="res://Audio/Animalistic Grunt.mp3"
+dest_files=["res://.godot/imported/Animalistic Grunt.mp3-c87cd52b2c2b4297dcd2fa1b02a7615c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

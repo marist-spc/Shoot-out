@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://clh5qwru5c356"
+path="res://.godot/imported/Deep Grunt.mp3-ca3eb985ecdf5e482ab35bada84b2a6f.mp3str"
+
+[deps]
+
+source_file="res://Audio/Deep Grunt.mp3"
+dest_files=["res://.godot/imported/Deep Grunt.mp3-ca3eb985ecdf5e482ab35bada84b2a6f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

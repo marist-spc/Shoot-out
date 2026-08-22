@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://kp52o2pd71lu"
-path="res://.godot/imported/Pick Up Ammo- Shoot Out .wav-4e5fb09decb9ac547a7e0113d0cd6bc5.sample"
+path="res://.godot/imported/Pick Up Ammo- Shoot Out .wav-70a77619b1f1a1eea2d64b2e3587afcb.sample"
 
 [deps]
 
-source_file="res://Audio/Pick Up Ammo- Shoot Out .wav"
-dest_files=["res://.godot/imported/Pick Up Ammo- Shoot Out .wav-4e5fb09decb9ac547a7e0113d0cd6bc5.sample"]
+source_file="res://Audio/Player Sounds/Pick Up Ammo- Shoot Out .wav"
+dest_files=["res://.godot/imported/Pick Up Ammo- Shoot Out .wav-70a77619b1f1a1eea2d64b2e3587afcb.sample"]
 
 [params]
 
