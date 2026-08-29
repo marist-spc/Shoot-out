@@ -1,13 +1,18 @@
 [gd_scene format=3 uid="uid://bsqooed8k12q0"]
 
 [ext_resource type="Texture2D" uid="uid://dmnbnkwi2dnqj" path="res://art/Stray Assets/cf66b5fe-bbc6-4179-a4d4-b1d826dbd5ff-removebg-preview.png" id="1_ji6dm"]
+[ext_resource type="Script" uid="uid://du6peaxi3ppes" path="res://ammo.gd" id="1_pj33l"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_told4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dojnb"]
+radius = 182.80536
 
 [node name="Area2D" type="Area2D" unique_id=376748305 groups=["Ammo"]]
 scale = Vector2(5, 5)
 collision_layer = 17
 collision_mask = 17
+script = ExtResource("1_pj33l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=567331267]
 shape = SubResource("CapsuleShape2D_told4")
@@ -16,3 +21,18 @@ shape = SubResource("CapsuleShape2D_told4")
 rotation = 1.5707964
 scale = Vector2(0.06755927, 0.1531902)
 texture = ExtResource("1_ji6dm")
+
+[node name="PlayerDetector" type="Area2D" parent="." unique_id=327062827]
+collision_layer = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" unique_id=412332616]
+shape = SubResource("CircleShape2D_dojnb")
+
+[node name="DeathTimer" type="Timer" parent="." unique_id=779409238]
+wait_time = 8.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
+[connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
