@@ -43,7 +43,7 @@ curserSens = 1000
 main_script = NodePath("..")
 
 [node name="Player2" parent="." unique_id=1743038392 node_paths=PackedStringArray("main_script") instance=ExtResource("1_glv2v")]
-position = Vector2(1698, 888)
+position = Vector2(1709, 894)
 playerNumber = 2
 curserSens = 1000
 main_script = NodePath("..")
@@ -86,43 +86,37 @@ WonderNodes = NodePath("../WanderNodes")
 position = Vector2(232, -1287)
 
 [node name="Node2D3" type="Node2D" parent="WanderNodes" unique_id=194947129]
-position = Vector2(3162, 1190)
+position = Vector2(3204, 2109)
 
 [node name="Node2D2" type="Node2D" parent="WanderNodes" unique_id=640992954]
-position = Vector2(1048, 4116)
+position = Vector2(996, 4925)
 
 [node name="Node2D5" type="Node2D" parent="WanderNodes" unique_id=1892720106]
-position = Vector2(2626, 953)
+position = Vector2(2414, 1801)
 
 [node name="Node2D4" type="Node2D" parent="WanderNodes" unique_id=1468772481]
-position = Vector2(1857, 2592)
+position = Vector2(299, 4450)
 
 [node name="Node2D" type="Node2D" parent="WanderNodes" unique_id=1948373052]
-position = Vector2(334, 4063)
+position = Vector2(1946, 4056)
 
 [node name="KeySpawnLocations" type="Node2D" parent="." unique_id=1096855593]
 position = Vector2(201, -1287)
 
 [node name="Node2D7" type="Node2D" parent="KeySpawnLocations" unique_id=1147398725]
-position = Vector2(1048, 1231)
+position = Vector2(1093, 1584)
 
 [node name="Node2D6" type="Node2D" parent="KeySpawnLocations" unique_id=618473830]
-position = Vector2(3647, 3063)
+position = Vector2(3249, 2115)
 
 [node name="Node2D5" type="Node2D" parent="KeySpawnLocations" unique_id=1021372457]
-position = Vector2(1577, 3312)
+position = Vector2(3793, 3206)
 
 [node name="Node2D4" type="Node2D" parent="KeySpawnLocations" unique_id=180703372]
-position = Vector2(1052, 4116)
+position = Vector2(359, 4620)
 
 [node name="Node2D3" type="Node2D" parent="KeySpawnLocations" unique_id=1366728625]
-position = Vector2(3382, 1103)
-
-[node name="Node2D2" type="Node2D" parent="KeySpawnLocations" unique_id=1041916290]
-position = Vector2(2458, 1023)
-
-[node name="Node2D" type="Node2D" parent="KeySpawnLocations" unique_id=426805586]
-position = Vector2(382, 4116)
+position = Vector2(1045, 4959)
 
 [node name="BulletSpawnTimer" type="Timer" parent="." unique_id=1073023976]
 wait_time = 1.5

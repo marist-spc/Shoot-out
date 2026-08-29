@@ -60,7 +60,9 @@ func _physics_process(delta: float) -> void:
 func aim(delta : float):
 	var shootButton
 	if isPlayerKeyboard:
-		$CrossHair.global_position = get_global_mouse_position()
+		var x = Input.get_axis(concat("aim_left",playerNumber), concat("aim_right",playerNumber))
+		var y = Input.get_axis(concat("aim_up",playerNumber), concat("aim_down",playerNumber))
+		var direction := Vector2(x,y)
 		shootButton = Input.is_action_just_pressed("mouse_click")
 	else:
 		var x = Input.get_axis(concat("aim_left",playerNumber), concat("aim_right",playerNumber))

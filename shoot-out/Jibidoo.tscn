@@ -22,11 +22,11 @@ height = 18.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_told4"]
 radius = 297.01514
 
-[node name="Jibidoo" type="CharacterBody2D" unique_id=105432123 groups=["Jibidoo"]]
+[node name="Jibidoo" type="CharacterBody2D" unique_id=105432123]
 light_mask = 2
 visibility_layer = 33
 material = SubResource("CanvasItemMaterial_2hs0m")
-collision_layer = 32
+collision_layer = 0
 script = ExtResource("1_3jb82")
 listening_speed = 500.0
 
@@ -36,6 +36,7 @@ energy = 0.04
 texture = ExtResource("2_tblx2")
 
 [node name="HitBox" type="Area2D" parent="." unique_id=1357193766 groups=["Jibidoo"]]
+collision_layer = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=608636780]
 position = Vector2(1, 0.5)

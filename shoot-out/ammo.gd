@@ -8,4 +8,5 @@ func _on_player_detector_body_entered(body: Node2D) -> void:
 	$DeathTimer.stop()
 
 func _on_player_detector_body_exited(body: Node2D) -> void:
-	$DeathTimer.start()
+	if $DeathTimer.is_inside_tree():
+		$DeathTimer.start()
